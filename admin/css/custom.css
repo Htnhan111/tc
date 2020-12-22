@@ -77,25 +77,27 @@ img.avatar {
     width: 40%;
     border-radius: 50%;
 }
-.form-thanh-toan {
+.form {
     padding: 20px 25px;
-    width: 50%;
     margin: 0 auto;
     position: relative;
     background-color: #fff;
     text-align: center;
 }
-.form-thanh-toan input{
+.form-them-banh {
+    width: 65%;
+}
+.form input{
     width: 70%;
     margin-bottom: 20px;
     padding: 5px 0;
 }
-.form-thanh-toan h4{
+.form h4{
     text-align: center;
     font-size: 2em;
     font-weight: 200;
 }
-.form-thanh-toan h5{
+.form h5{
     font-size: 1.5em;
     font-weight: 350;
 }

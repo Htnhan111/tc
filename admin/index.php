@@ -1,13 +1,13 @@
 <?php
     session_start();
     require_once "dbcon/function.php";
-    if((int)$_SESSION["loai"] === 2){
-        echo "<script> alert('Bạn không đủ quyền hạn !!!'); </script>";
-        header("Location: ../");
-    }else if(!isset($_SESSION["idUser"])){
-        echo "<script> alert('Vui lòng đăng nhập !!!'); </script>";
-        echo "<script> window.history.back(); </script>";
-    }
+    // if((int)$_SESSION["loai"] === 2){
+    //     echo "<script> alert('Bạn không đủ quyền hạn !!!'); </script>";
+    //     header("Location: ../");
+    // }else if(!isset($_SESSION["idUser"])){
+    //     echo "<script> alert('Vui lòng đăng nhập !!!'); </script>";
+    //     echo "<script> window.history.back(); </script>";
+    // }
     if( isset($_GET["p"]) ){
         $p = $_GET["p"];
     }else $p = "";
@@ -23,7 +23,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <base href="http://localhost/dacs2/admin/">
+    <base href="http://localhost/tc/admin/">
     <title>Dashboard</title>
 
     <link rel="stylesheet" href="../public/css/bootstrap.min.css">
@@ -68,70 +68,15 @@
                 <!-- Begin Page Content -->
                 <?php
                     switch($p){
-                        // điều hướng quản lý sản phẩm
-                        case "show-product" : require "pages/product/show_product.php"; break;
-                        case "add-product" : require "pages/product/add_product.php"; break;
-                        case "sua-product" : 
-                            if( isset($_GET["idSP"]) ){
-                                require "pages/product/sua_product.php"; break;
-                            }else{
-                                require "pages/dashboard.php"; break;
-                            }
-                        // xem tất cả ảnh của sản phẩm
-                        case "view-image" : 
-                            if( isset($_GET["idSP"]) ){
-                                require "pages/product/view_image.php"; break;
-                            }else{
-                                require "pages/dashboard.php"; break;
-                            }
-                        // xem tất cả màu của sản phẩm
-                        case "view-color" : 
-                            if( isset($_GET["idSP"]) ){
-                                require "pages/colorsp/show_colorsp.php"; break;
-                            }else{
-                                require "pages/dashboard.php"; break;
-                            }
-                        // xem tất cả size của sản phẩm
-                        case "view-size" : 
-                            if( isset($_GET["idSP"]) ){
-                                require "pages/sizesp/show_sizesp.php"; break;
-                            }else{
-                                require "pages/dashboard.php"; break;
-                            }
-
-
-                        // điều hướng quản lý màu
-                        case "show-color" : require "pages/color/show_color.php"; break;
-                        case "add-color" : require "pages/color/add_color.php"; break;
-                        case "sua-color" : 
-                            if( isset($_GET["idCol"])){
-                                require "pages/color/sua_color.php"; break;
-                            }else{
-                                require "pages/dashboard.php"; break;
-                            }
-                        
-                        // điều hướng quản lý size
-                        case "show-size" : require "pages/size/show_size.php"; break;
-                        case "add-size" : require "pages/size/add_size.php"; break;
-                        case "sua-size" : 
-                            if( isset($_GET["idSize"])){
-                                require "pages/size/sua_size.php"; break;
-                            }else{
-                                require "pages/dashboard.php"; break;
-                            }
-
-                        // điều hướng quản lý size
-                        case "show-magiamgia" : require "pages/magiamgia/show_mgg.php"; break;
-
-                        // điều hướng quản lý đơn hàng
-                        case "show-order" : require "pages/donhang/show_donhang.php"; break;
-
-                        // điều hướng quản lý slide
-                        case "show-slide" : require "pages/slide/show_slide.php"; break;
-
-                        // điều hướng quản lý thương hiệu
-                        case "show-brand" : require "pages/thuonghieu/show_brand.php"; break;
-
+                        // điều hướng quản lý bánh
+                        case "show-cakes" : require "pages/cake/show_cake.php"; break;
+                        // case "add-product" : require "pages/product/add_product.php"; break;
+                        // case "sua-product" : 
+                        //     if( isset($_GET["idSP"]) ){
+                        //         require "pages/product/sua_product.php"; break;
+                        //     }else{
+                        //         require "pages/dashboard.php"; break;
+                        //     }
                         default : require "pages/dashboard.php";
                     }
                 ?>
