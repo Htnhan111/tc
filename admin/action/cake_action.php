@@ -1,32 +1,63 @@
 <?php
 require 'function.php';
 require "../dbcon/ConDB.php";
+$permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+$expensions= array("jpeg","jpg","png");
     if( isset($_POST["add"])){
         
-        if( !empty($_POST["size"])){
-            $size = $_POST["size"];
-            $sql = "
-                SELECT * FROM tb_size
-                WHERE Size = :size
+        if( !empty($_POST["cake"]) && !empty($_POST["giagoc"]) && !empty($_POST["giagiam"])){
+            $cake = $_POST["cake"];
+            $giagoc = $_POST["giagoc"];
+            $giagiam = $_POST["giagiam"];
+            $tenkd = changeTitle($cake);
+            $mota = $_POST["mota"];
+            $loai = $_POST["loaicake"];
+            $anh = $_FILES['img']['name'];
+            $duoi = pathinfo($anh, PATHINFO_EXTENSION);
+
+            $check = "
+                SELECT idCake FROM tb_cakes
+                WHERE TenBanh = :cake;
             ";
-            
-            $pre = $conn->prepare($sql);
-            $pre->bindParam(":size", $size, PDO::PARAM_STR);
+            $pre = $conn->prepare($check);
+            $pre->bindParam(":cake", $cake, PDO::PARAM_STR);
             $pre->execute();
             $count = $pre->rowCount();
             if($count === 0){
-                $sql = "
-                    INSERT INTO tb_size (idSize, Size) 
-                    VALUES (NULL, :size)
-                ";
                 
-                $pre = $conn->prepare($sql);
-                $pre->bindParam(":size", $size, PDO::PARAM_STR);
-                $pre->execute();
-                header("location:../?p=show-size");
-            }else {
-                echo "<script> alert('Size đã tồn tại trong hệ thống'); </script>";
+                if( in_array($duoi, $expensions) === TRUE){
+                
+                    $img = substr(str_shuffle($permitted_chars), 0, 16)."_".$anh;
+
+                    while(file_exists("../../public/img/cakes/".$img)){
+                        $img = substr(str_shuffle($permitted_chars), 0, 16)."_".$anh;
+                    }
+
+                    move_uploaded_file($_FILES['img']['tmp_name'], "../../public/img/cakes/".$img);
+
+                    $sql = "
+                        INSERT INTO 
+                        tb_cakes (idCake, TenBanh, TenKD, GiaGoc, GiaGiam, Anh, MoTa, DaBan, idLC, idTTC) 
+                        VALUES 
+                        (NULL, :cake, :tenkd, :giagoc, :giagiam, :img, :mota, 0, :idloai, 1);
+                    ";
+                    $pre = $conn->prepare($sql);
+                    $pre->bindParam(":cake", $cake, PDO::PARAM_STR);
+                    $pre->bindParam(":tenkd", $tenkd, PDO::PARAM_STR);
+                    $pre->bindParam(":giagoc", $giagoc, PDO::PARAM_INT);
+                    $pre->bindParam(":giagiam", $giagiam, PDO::PARAM_INT);
+                    $pre->bindParam(":img", $img, PDO::PARAM_STR);
+                    $pre->bindParam(":mota", $mota, PDO::PARAM_STR);
+                    $pre->bindParam(":idloai", $loai, PDO::PARAM_INT);
+                    $pre->execute();
+                    header("location:../?p=show-cakes");
+                }else{
+                    echo "<script> window.history.back(); </script>";
+                    echo "<script> alert('Chỉ nhận file ảnh !!!'); </script>";
+                }
+            }else{
                 echo "<script> window.history.back(); </script>";
+                echo "<script> alert('Sản phẩm đã tồn tại trong hệ thống !!!'); </script>";
             }
         }else {
             echo "<script> window.history.back(); </script>";
@@ -34,33 +65,76 @@ require "../dbcon/ConDB.php";
         }
     }
     if( isset($_POST["sua"])){
-        if( !empty($_POST["size"])){
-            $size = $_POST["size"];
-            $idSize = $_POST["idSize"];
+        if( !empty($_POST["ten"]) && !empty($_POST["tenkd"]) && !empty($_POST["gia"])){
+            $idSP = $_POST["idSP"];
+            $ten = $_POST["ten"];
+            $gia = $_POST["gia"];
+            $giagiam = $_POST["giagiam"];
+            $tenkd = changeTitle($ten);
+            $mota = $_POST["mota"];
+            $ten_anh = $_POST["tenanh"];
+            $loaisp = $_POST["loaisp"];
+            $idTTSP = $_POST["idTTSP"];
+            $idTH = $_POST["idTH"];
+            
+
+            if( $_FILES["img"]['name'] !== "" ){
+                $anh = $_FILES['img']['name'];
+                $duoi = pathinfo($anh, PATHINFO_EXTENSION);
+                if( in_array($duoi, $expensions) === TRUE){
+                    $anhbia = substr(str_shuffle($permitted_chars), 0, 16)."_".$anh;
+                    while(file_exists("../../public/img/product/".$anhbia)){
+                        $anhbia = substr(str_shuffle($permitted_chars), 0, 16)."_".$anh;
+                    }
+                    move_uploaded_file($_FILES['img']['tmp_name'], "../../public/img/product/".$anhbia);
+                    unlink("../../public/img/product/".$ten_anh);
+                    $img = "Anh = "."'$anhbia'".",";
+                }else{
+                    echo "<script> alert('Chỉ nhận file ảnh !!!'); </script>";
+                }
+            }else{
+                $img = "";
+            }
             $sql = "
-                UPDATE tb_size
-                SET Size = :size
-                WHERE idSize = :idSize
+                UPDATE tb_sanpham
+                SET ".$img."
+                    Ten = :ten,
+                    TenKD = :tenkd,
+                    GiaGoc = :gia,
+                    GiaGiam = :giagiam,
+                    MoTa =  :mota,
+                    idLoaiSP = :loaisp,
+                    idTTSP = :idTTSP,
+                    idTH = :idTH
+                WHERE idSP = :idSP;
             ";
             $pre = $conn->prepare($sql);
-            $pre->bindParam(":idSize", $idSize, PDO::PARAM_INT);
-            $pre->bindParam(":size", $size, PDO::PARAM_STR);
+            $pre->bindParam(":ten", $ten, PDO::PARAM_STR);
+            $pre->bindParam(":tenkd", $tenkd, PDO::PARAM_STR);
+            $pre->bindParam(":gia", $gia, PDO::PARAM_INT);
+            $pre->bindParam(":giagiam", $giagiam, PDO::PARAM_INT);
+            $pre->bindParam(":mota", $mota, PDO::PARAM_STR);
+            $pre->bindParam(":loaisp", $loaisp, PDO::PARAM_INT);
+            $pre->bindParam(":idTTSP", $idTTSP, PDO::PARAM_INT);
+            $pre->bindParam(":idTH", $idTH, PDO::PARAM_INT);
+            $pre->bindParam(":idSP", $idSP, PDO::PARAM_INT);
             $pre->execute();
-            header("location:../?p=show-size");   
+            header("location:../?p=show-product");
         }else {
-            echo "<script> window.history.back(); </script>";
             echo "<script> alert('Vui lòng nhập đầy đủ'); </script>";
         }
     }
     if( isset($_POST["xoa"])){
-        $idSize = filter_input(INPUT_POST, 'idSize');
+        $idSP = filter_input(INPUT_POST, 'idSP');
+        $img = $_POST["img"];
         $sql = "
-            DELETE FROM tb_size
-            WHERE idSize = :idSize;
+            DELETE FROM tb_sanpham
+            WHERE idSP = :idSP;
         ";
         $pre = $conn->prepare($sql);
-        $pre->bindParam(":idSize", $idSize, PDO::PARAM_INT);
+        $pre->bindParam(":idSP", $idSP, PDO::PARAM_INT);
         $pre->execute();
-        header("location:../?p=show-size");   
+        unlink("../../public/img/product/".$img);
+        header("location:../?p=show-product");
     }
 ?>

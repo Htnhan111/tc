@@ -16,6 +16,22 @@
             $pre->execute();
             return $pre->fetchAll();
         }
+        // Lấy thông tin của 1 loại bánh
+        function info_cake($idCake){
+            require "ConDB.php";
+            $sql = "
+                SELECT * FROM tb_cakes
+                INNER JOIN tb_loaicake
+                ON tb_cakes.idLC = tb_loaicake.idLC
+                INNER JOIN tb_trangthaicake
+                ON tb_cakes.idTTC = tb_trangthaicake.idTTC
+                WHERE idCake = :idCake
+            ";
+            $pre = $conn->prepare($sql);
+            $pre->bindParam(":idCake", $idCake, PDO::PARAM_INT);
+            $pre->execute();
+            return $pre->fetchAll();
+        }
 
         // Lấy 16 sản phẩm mới nhất
         function new_product(){
@@ -53,6 +69,19 @@
         }
 
         
+    #
+
+    # Loại bánh func
+        // Lấy tất cả loại bánh
+        function all_loai(){
+            require "ConDB.php";
+            $sql = "
+                SELECT * FROM tb_loaicake
+            ";
+            $pre = $conn->prepare($sql);
+            $pre->execute();
+            return $pre->fetchAll();
+        }
     #
     
 

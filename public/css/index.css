@@ -1,3 +1,6 @@
+.justify-content-md-center{
+  justify-content: center!important;
+}
 /* Header */
  body{
  font-family:'Texturina', seri !important;
@@ -69,6 +72,10 @@ button,a{
   }
 }
 @media screen and (max-width: 600px) {
+  .darius{
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+  }
   .screen{
     width: 50% !important;
     margin-left: 20%;
@@ -862,12 +869,12 @@ transform:scale(1.1);
 }
 .contrast{
   font-size: 1.5em;
-  line-height: 1.0em;
+  line-height: 1.2em;
   text-align: center;
   color: #fff;
   font-weight: 700;
   z-index: 11;
-  letter-spacing: 4px;
+  letter-spacing: 0.1rem;
   text-shadow: 2px 2px 3px #313131;
 }
 .carousel-caption {
@@ -1616,5 +1623,415 @@ footer.page-footer a:hover{
     color: #e6e6e6;
     font-size: 12px;
 }
+
+
+
+
+
+
+
+
+
+/* -------------cart------------- */
+
+  .link{
+    background-image: url('img/head2.jpg');
+    min-height: 255px; background-size: cover;
+    background-position: bottom;
+    background-attachment: fixed;
+  }
+  .breadcrumb {
+    background: transparent;
+    display: block;
+    font-size: 14px;
+    line-height: 25px;
+    padding: 0 0 0 10px;
+    text-transform: capitalize;
+    overflow: hidden;
+    list-style-type: none;
+  }
+  /*content background*/
+  .breadcrumb li, h2{
+    display: inline-block;
+  }
+  .breadcrumb > li + li a:before {
+      content: "/";
+      display: inline-block;
+      margin-left: 11px;
+      margin-right: 10px;
+  }
+  .carou{
+    padding-top:10%;
+    text-align: center; 
+  }
+  @media screen and (max-width: 1000px) {
+  .carou{
+    padding-top:15% !important;
+    text-align: center; 
+  }
+  }
+    @media screen and (max-width: 650px) {
+  .carou{
+    padding-top:25% !important;
+    text-align: center; 
+  }
+  }
+      @media screen and (max-width: 400px) {
+  .carou{
+    padding-top:30% !important;
+    text-align: center; 
+  }
+  }
+  .carou h1 {
+    color:#e6e6e6;
+  }
+  .carou a{
+    color: #ccc;
+  }
+  .carou a:hover{
+    color: #fff;
+  }
+  .carou .active a {
+    color: #fff;
+  }
+  .de{
+    width: 100%;
+  }
+
+  /* Table cart */
+
+  .product table{
+    width: 100%;
+  }
+  .product{
+    margin: auto !important;
+  }
+  .product th{
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #777;
+  }
+  .product td{
+    padding-top: 15px;
+      padding-bottom: 15px;
+  }
+  .product td ul{
+    margin-bottom: 0px;
+  }
+  .product tbody .bottum{
+    border-bottom: 1px solid #cccc;
+  }
+  .product tbody .margin-left-auto{
+    margin-left: auto;
+  }
+  
+  ._{
+    border-bottom: 2px solid #33ccff;
+  }
+
+  .remove{
+    display: block;
+      width: 24px;
+      height: 24px;
+      font-size: 15px !important;
+      line-height: 19px !important;
+      border-radius: 100%;
+      color: #ccc;
+      font-weight: bold;
+      text-align: center;
+      border: 2px solid currentColor;
+  }
+  td .remove:hover{
+    color: #000;
+  }
+  .product-thumbnail{
+    text-align: center;
+  }
+  .buttons_added {
+      opacity:1;
+      display:inline-block;
+      display:-ms-inline-flexbox;
+      display:inline-flex;
+      white-space:nowrap;
+      vertical-align:top;
+  }
+  .is-form {
+      overflow:hidden;
+      position:relative;
+      background-color:#f9f9f9;
+      height:2.2rem;
+      width:1.9rem;
+      padding:0;
+      text-shadow:1px 1px 1px #fff;
+      border:1px solid #ddd;
+  }
+  .is-form:focus,.input-text:focus {
+      outline:none;
+  }
+  .is-form.minus {
+      border-radius:4px 0 0 4px;
+  }
+  .is-form.plus {
+      border-radius:0 4px 4px 0;
+  }
+  .input-qty {
+      background-color:#fff;
+      height:2.2rem;
+      text-align:center;
+      display:inline-block;
+      vertical-align:top;
+      margin:0;
+      border-top:1px solid #ddd;
+      border-bottom:1px solid #ddd;
+      border-left:0;
+      border-right:0;
+      padding:0;
+  }
+  .input-qty::-webkit-outer-spin-button,.input-qty::-webkit-inner-spin-button {
+      -webkit-appearance:none;
+      margin:0;
+  }
+  footer{
+    font-family:'Texturina', seri !important;
+  }
+  .text-end{
+    text-align: end;
+  }
+  .continue{
+      text-transform: uppercase;
+      letter-spacing: .03em;
+      text-align: center;
+      text-decoration: none;
+      border: 3px solid #33ccff;
+      line-height: 2.4em;
+      min-height: 2.5em;
+      padding: 0 1.2em;
+      max-width: 100%;
+  }
+  .thanhtoan{
+    font-weight: bold;
+      font-size: .97em;
+      color: #fff;
+      letter-spacing: .03em;
+      background: linear-gradient(to right, #0088cc, #4dc3ff);
+  }
+  .thanhtoan:hover{
+    color: #fff7e6;
+    background: linear-gradient(to right, #4dc3ff, #0088cc);
+  }
+  .width-7{
+    width: 70%;
+  }
+  .width-1{
+    width: 10%;
+  }
+  @media screen and (max-width: 450px){
+    .de{
+      padding-left: 0px !important;
+      margin-left: 0px !important;
+    }
+    .darius .bottum{
+      padding-left: 0.5rem !important;
+      padding-right: 0.5rem !important;
+    }
+    .nole{
+      display: none;
+    }
+    .product, .content{
+      padding: 0px;
+    }
+    .product td{
+      font-size: 10px;
+    }
+    .col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+         padding-right: 0px !important; 
+         padding-left: 0px !important; 
+    }
+  }
+  @media screen and (max-width: 1200px) {
+    .nopadding{
+      padding-left: 0px !important;
+      padding-right: 0px !important;
+    }
+  }
+
+
+  /* them */
+  /* Center the image and position the close button */
+  .imgcontainer {
+    text-align: center;
+    position: relative;
+  }
+
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+
+  /* The Close Button (x) */
+  .closse {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+  }
+
+  .closse:hover,
+  .closse:focus {
+    color: black;
+    cursor: pointer;
+  }
+
+  /* Add Zoom Animation */
+  .animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+  }
+
+  @-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+  }
+    
+  @keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+  }
+
+  /* Change styles for span and cancel button on extra small screens */
+  @media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+    .cancelbtn {
+       width: 100%;
+    }
+  }
+  .map{
+    margin: auto;
+    width: 100%;
+  }
+  .chot{
+    padding: 0px;
+  }
+  .addres input{
+    width: 100%;
+    border: none !important;
+    font-size: 13px;
+    padding-left: 3%;
+  }
+  .addres{
+      padding: 2%1%2%2%;
+      display: flex;
+      
+  }
+  .say{
+    font-size: 14px;
+      font-weight: 400;
+  }
+  .bor{
+    border: 1px solid    #999999;
+    margin: 0% 5% 5% 5%;
+    
+  }
+  .mrs{
+      border-left: 2px dotted #800000 !important;
+    }
+
+  @media screen and (max-width: 1200px) {
+      .mrs{
+      border-left: none !important;
+      border-top: 2px dotted #800000 !important;
+    }
+    .product .mrs{
+      padding-top: 3%;
+    }
+  }
+  input:focus {
+    border: none;
+    outline: 0;  
+    outline-style: none;  
+    outline-width: 0; 
+  }
+  .mar{
+    font-size: 20px;
+    color: #808080;
+  }
+  .size{
+    width: 25px;
+  }
+  .gren{
+    color: green;
+  }
+
+  .thanhtoan {
+    font-weight: bold;
+    font-size: .97em;
+    color: #fff;
+    letter-spacing: .03em;
+    background: linear-gradient(to right, #0088cc, #4dc3ff);
+  }
+  @media screen and (max-width: 1000px) {
+    .darius .thanhtoan{
+      font-size: 12px;
+    }
+  }
+  .dk{
+    width: 65%;
+    text-align: center;
+    margin: auto
+  }
+  a:hover{
+   text-decoration: none;
+   }
+
+
+
+
+
+
+
+
+
+   /*------------- detail------------- */
+   .fix-img{
+    width: 60%;
+   }
+   .ima{
+    text-align: center;
+   }
+   .cor {
+    font-size: 23px;
+      font-weight: 600;
+      color: #663300; 
+  }
+  .col{
+      font-size: 30px;
+      font-weight: 600;
+      color: #008080; 
+  }
+  @media screen and (max-width: 550px) {
+      .col{
+      font-size: 22px;
+    }
+     .cor {
+      font-size: 20px; 
+    }
+ 
+  }
+
+  del{
+    text-decoration: line-through;
+  }
+  .darius{
+    background-color: #fff;
+    border-radius: 10px;
+  }
 
 

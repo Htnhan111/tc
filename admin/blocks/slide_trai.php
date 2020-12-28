@@ -65,13 +65,7 @@
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="./?p=show-product">Sản phẩm</a>
-                <a class="collapse-item" href="./?p=show-color">Màu</a>
-                <a class="collapse-item" href="./?p=show-size">Size</a>
-                <a class="collapse-item" href="./?p=show-order">Đơn hàng</a>
-                <a class="collapse-item" href="./?p=show-magiamgia">Mã giảm giá</a>
-                <a class="collapse-item" href="./?p=show-slide">Slide</a>
-                <a class="collapse-item" href="./?p=show-brand">Thương hiệu</a>
+                <a class="collapse-item" href="./?p=show-cakes">Bánh</a>
             </div>
         </div>
     </li>

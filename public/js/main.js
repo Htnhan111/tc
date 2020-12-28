@@ -1,59 +1,14 @@
-const products = [{
-        label: "New!",
-        img: "images/cake.png",
-        title: "Bánh xe",
-        subtitle: "",
-        url: "#",
-    },
+const products = [
+// ============== lặp bánh ==========//
     {
         label: "New!",
-        img: "images/cake.png",
+        img: "public/img/cake.png",
         title: "Bánh xe",
         subtitle: "",
         url: "#",
-    },
-    {
-        label: "New!",
-        img: "images/cake.png",
-        title: "Bánh xe",
-        subtitle: "",
-        url: "#",
-    },
-    {
-        label: "",
-        img: "images/cake.png",
-        title: "Bánh xe",
-        subtitle: "",
-        url: "#",
-    },
-    {
-        label: "",
-        img: "images/cake.png",
-        title: "Bánh xe",
-        subtitle: "",
-        url: "#",
-    },
-    {
-        label: "",
-        img: "images/cake.png",
-        title: "Bánh xe",
-        subtitle: "",
-        url: "#",
-    },
-    {
-        label: "",
-        img: "images/cake.png",
-        title: "Bánh xe",
-        subtitle: "",
-        url: "#",
-    },
-    {
-        label: "",
-        img: "images/cake.png",
-        title: "Bánh xe",
-        subtitle: "",
-        url: "#",
-    },
+    }
+// ========= lặp bánh phía trên ========//
+
 ];
 
 const contentProducts = {

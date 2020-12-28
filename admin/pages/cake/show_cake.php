@@ -35,14 +35,14 @@
                     <tr>
                         <td><?php echo $cake["TenBanh"]; ?></td>
                         <td><?php echo $cake["LoaiCake"]; ?></td>
-                        <td><?php echo $cake["GiaGiam"]; ?></td>
-                        <td><img src="public/img/cakes/<?php echo $cake["Anh"]; ?>" alt="" srcset=""></td>
+                        <td><?php echo number_format($cake["GiaGiam"], 0, ",", "."); ?></td>
+                        <td><img src="../public/img/cakes/<?php echo $cake["Anh"]; ?>" alt="" width="85px" srcset=""></td>
                         <td><?php echo $cake["DaBan"]; ?></td>
-                        <td><?php echo $cake["TinhTrang"]; ?></td>
+                        <td><?php echo $cake["TrangThai"]; ?></td>
                         <td>
-                            <!-- <a href="./?p=sua-size&idSize=<?php //echo $s["idSize"]; ?>">Sửa</a> |  -->
+                            <a href="javascript:void(0)" data-id="<?php echo $cake["idCake"]; ?>" onclick="editCake(this)">Sửa</a> | 
                             <form action="././action/cake_action.php" method="post" style="display: inline;" 
-                                onsubmit='return confirm("Bạn có chắc là muốn xóa bánh:<?php echo $cake["TenBanh"]; ?> không ???")'>
+                                onsubmit='return confirm("Bạn có chắc là muốn xóa bánh: <?php echo $cake["TenBanh"]; ?> không ???")'>
                                 <input type="hidden" name="idCake" value="<?php echo $cake["idCake"]; ?>">
                                 <button type="submit" name="xoa" class="btn-delete">Xóa</button>
                             </form>
@@ -54,6 +54,7 @@
                     ?>
                 </tbody>
             </table>
+            <!-- thêm bánh -->
             <div id="cake" class="modal">
                 <form class="modal-content animate" action="././action/cake_action.php" method="post" enctype='multipart/form-data'>
                     <div class="form form-them-banh">
@@ -61,17 +62,17 @@
                         <h4>Thêm Bánh</h4>
                         <label for="cake">Tên bánh: </label>
                         <input type="text"  name="cake" class="form-control form-control-sm in-s"><br>
-                        <label for="cost">Giá gốc: </label>
-                        <input type="number"  name="cost" class="form-control form-control-sm in-s"><br>
+                        <label for="giagoc">Giá gốc: </label>
+                        <input type="number"  name="giagoc" class="form-control form-control-sm in-s"><br>
                         <label for="giagiam">Giá giảm: </label>
                         <input type="number"  name="giagiam" class="form-control form-control-sm in-s"><br>
                         <label for="loaicake">Loại bánh: </label>
-                        <select name="loai" id="loaicake" class="form-control form-control-sm in-s" style="width: 150px">
+                        <select name="loaicake" id="loaicake" class="form-control form-control-sm in-s" >
                             <?php
                                 $loai = all_loai();
                                 foreach( $loai as $l ):
                             ?>
-                                <option value="<?php echo $l["idLoai"]; ?>"><?php echo $l["Loai"]; ?></option>
+                                <option value="<?php echo $l["idLC"]; ?>"><?php echo $l["LoaiCake"]; ?></option>
                             <?php
                                 endforeach;
                             ?>
@@ -83,6 +84,11 @@
                         <button type="submit" name="add" class="btn-sub">Thêm</button>
                     </div>
                 </form>
+            </div>
+
+            <!-- sửa bánh -->
+            <div id="edit-cake" class="modal">
+                
             </div>
         </div>
     </div>
