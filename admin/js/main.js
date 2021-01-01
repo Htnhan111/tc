@@ -53,11 +53,11 @@
 //     mc.innerHTML = giagoc;
 // }
 
-function editCake(ele){
-    const id = ele.getAttribute("data-id"); 
-    document.getElementById('edit-cake').style.display='block'
-    $.get("pages/cake/sua_cake.php", {idCake:id}, function(data){
-        $("#edit-cake").html(data);
-    });
-}
+// function editCake(ele){
+//     const id = ele.getAttribute("data-id"); 
+//     document.getElementById('edit-cake').style.display='block'
+//     $.get("pages/cake/sua_cake.php", {idCake:id}, function(data){
+//         $("#edit-cake").html(data);
+//     });
+// }
 

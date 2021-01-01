@@ -70,6 +70,14 @@
                     switch($p){
                         // điều hướng quản lý bánh
                         case "show-cakes" : require "pages/cake/show_cake.php"; break;
+                        case "sua-cake" : 
+                            if( isset($_GET["idCake"]) ){
+                                require "pages/cake/sua_cake.php"; break;
+                            }else{
+                                require "pages/dashboard.php"; break;
+                            }
+                        // điều hướng quản lý menu bánh
+                        case "show-menu" : require "pages/menu/show_menu.php"; break;
                         // case "add-product" : require "pages/product/add_product.php"; break;
                         // case "sua-product" : 
                         //     if( isset($_GET["idSP"]) ){

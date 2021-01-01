@@ -65,17 +65,16 @@ $expensions= array("jpeg","jpg","png");
         }
     }
     if( isset($_POST["sua"])){
-        if( !empty($_POST["ten"]) && !empty($_POST["tenkd"]) && !empty($_POST["gia"])){
-            $idSP = $_POST["idSP"];
-            $ten = $_POST["ten"];
-            $gia = $_POST["gia"];
+        if( !empty($_POST["cake"]) && !empty($_POST["giagoc"]) && !empty($_POST["giagiam"])){
+            $cake = $_POST["cake"];
+            $giagoc = $_POST["giagoc"];
             $giagiam = $_POST["giagiam"];
-            $tenkd = changeTitle($ten);
+            $tenkd = changeTitle($cake);
             $mota = $_POST["mota"];
-            $ten_anh = $_POST["tenanh"];
-            $loaisp = $_POST["loaisp"];
-            $idTTSP = $_POST["idTTSP"];
-            $idTH = $_POST["idTH"];
+            $loai = $_POST["loaicake"];
+            $ten_anh = $_POST["avatar"];
+            $idCake = $_POST["idCake"];
+            // $anh = $_FILES['img']['name'];
             
 
             if( $_FILES["img"]['name'] !== "" ){
@@ -83,11 +82,11 @@ $expensions= array("jpeg","jpg","png");
                 $duoi = pathinfo($anh, PATHINFO_EXTENSION);
                 if( in_array($duoi, $expensions) === TRUE){
                     $anhbia = substr(str_shuffle($permitted_chars), 0, 16)."_".$anh;
-                    while(file_exists("../../public/img/product/".$anhbia)){
+                    while(file_exists("../../public/img/cakes/".$anhbia)){
                         $anhbia = substr(str_shuffle($permitted_chars), 0, 16)."_".$anh;
                     }
-                    move_uploaded_file($_FILES['img']['tmp_name'], "../../public/img/product/".$anhbia);
-                    unlink("../../public/img/product/".$ten_anh);
+                    move_uploaded_file($_FILES['img']['tmp_name'], "../../public/img/cakes/".$anhbia);
+                    unlink("../../public/img/cakes/".$ten_anh);
                     $img = "Anh = "."'$anhbia'".",";
                 }else{
                     echo "<script> alert('Chỉ nhận file ảnh !!!'); </script>";
@@ -96,45 +95,62 @@ $expensions= array("jpeg","jpg","png");
                 $img = "";
             }
             $sql = "
-                UPDATE tb_sanpham
+                UPDATE tb_cakes
                 SET ".$img."
-                    Ten = :ten,
+                    TenBanh = :ten,
                     TenKD = :tenkd,
-                    GiaGoc = :gia,
+                    GiaGoc = :giagoc,
                     GiaGiam = :giagiam,
                     MoTa =  :mota,
-                    idLoaiSP = :loaisp,
-                    idTTSP = :idTTSP,
-                    idTH = :idTH
-                WHERE idSP = :idSP;
+                    idLC = :idLC
+                WHERE idCake = :idCake;
             ";
             $pre = $conn->prepare($sql);
-            $pre->bindParam(":ten", $ten, PDO::PARAM_STR);
+            $pre->bindParam(":ten", $cake, PDO::PARAM_STR);
             $pre->bindParam(":tenkd", $tenkd, PDO::PARAM_STR);
-            $pre->bindParam(":gia", $gia, PDO::PARAM_INT);
+            $pre->bindParam(":giagoc", $giagoc, PDO::PARAM_INT);
             $pre->bindParam(":giagiam", $giagiam, PDO::PARAM_INT);
             $pre->bindParam(":mota", $mota, PDO::PARAM_STR);
-            $pre->bindParam(":loaisp", $loaisp, PDO::PARAM_INT);
-            $pre->bindParam(":idTTSP", $idTTSP, PDO::PARAM_INT);
-            $pre->bindParam(":idTH", $idTH, PDO::PARAM_INT);
-            $pre->bindParam(":idSP", $idSP, PDO::PARAM_INT);
+            $pre->bindParam(":idLC", $loai, PDO::PARAM_INT);
+            $pre->bindParam(":idCake", $idCake, PDO::PARAM_INT);
             $pre->execute();
-            header("location:../?p=show-product");
+            header("location:../?p=sua-cake&idCake=".$idCake);
         }else {
             echo "<script> alert('Vui lòng nhập đầy đủ'); </script>";
         }
     }
     if( isset($_POST["xoa"])){
-        $idSP = filter_input(INPUT_POST, 'idSP');
-        $img = $_POST["img"];
+        $idCake = filter_input(INPUT_POST, 'idCake');
+        $img = $_POST["anh"];
         $sql = "
-            DELETE FROM tb_sanpham
-            WHERE idSP = :idSP;
+            DELETE FROM tb_cakes
+            WHERE idCake = :idCake;
         ";
         $pre = $conn->prepare($sql);
-        $pre->bindParam(":idSP", $idSP, PDO::PARAM_INT);
+        $pre->bindParam(":idCake", $idCake, PDO::PARAM_INT);
         $pre->execute();
-        unlink("../../public/img/product/".$img);
-        header("location:../?p=show-product");
+        unlink("../../public/img/cakes/".$img);
+        header("location:../?p=show-cakes");
+    }
+    if( isset($_POST["changett"])){
+        $idCake = filter_input(INPUT_POST, 'idCake');
+        $status = (int)$_POST["status"];
+        if($status === 2){
+            $tt = 1;
+        }
+        if($status === 1){
+            $tt = 2;
+        }
+        
+        $sql = "
+            UPDATE tb_cakes
+            SET idTTC = :status
+            WHERE idCake = :idCake;
+        ";
+        $pre = $conn->prepare($sql);
+        $pre->bindParam(":idCake", $idCake, PDO::PARAM_INT);
+        $pre->bindParam(":status", $tt, PDO::PARAM_INT);
+        $pre->execute();
+        header("location:../?p=show-cakes");
     }
 ?>
