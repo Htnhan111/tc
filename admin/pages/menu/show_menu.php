@@ -56,39 +56,6 @@
                     </div>
                 </form>
             </div>
-
-            <!-- sửa bánh -->
-            <!-- <div id="edit-cake" class="modal">
-                <form class="modal-content animate" action="././action/cake_action.php" method="post" enctype='multipart/form-data'>
-                    <div class="form form-them-banh">
-                        <span onclick="document.getElementById('cake').style.display='none'" class="close" title="Close Modal">&times;</span>
-                        <h4>Thêm Bánh</h4>
-                        <label for="cake">Tên bánh: </label>
-                        <input type="text"  name="cake" class="form-control form-control-sm in-s" id="tenbanh"><br>
-                        <label for="giagoc">Giá gốc: </label>
-                        <input type="number"  name="giagoc" class="form-control form-control-sm in-s" id="giagoc"><br>
-                        <label for="giagiam">Giá giảm: </label>
-                        <input type="number"  name="giagiam" class="form-control form-control-sm in-s" id="giagiam"><br>
-                        <label for="loaicake">Loại bánh: </label>
-                        <select name="loaicake" id="loaicake" class="form-control form-control-sm in-s" >
-                            <?php
-                                $loai = all_loai();
-                                foreach( $loai as $l ):
-                            ?>
-                                <option value="<?php echo $l["idLC"]; ?>"><?php echo $l["LoaiCake"]; ?></option>
-                            <?php
-                                endforeach;
-                            ?>
-                        </select> <br>
-                        <label for="mota">Mô tả bánh: </label>
-                        <textarea id="mota" class="ckeditor" name="mota"></textarea> <br>
-                        <label for="img">Ảnh bánh: </label>
-                        <input type="file" name="img" id="img" /> <br>
-                        <img src="../public/img/cakes/<?php echo $c["Anh"]; ?>" alt="" srcset="" style="width:20%"> <br>
-                        <button type="submit" name="sua" class="btn-sub">Sửa</button>
-                    </div>
-                </form>
-            </div> -->
         </div>
     </div>
 </div>

@@ -10,6 +10,7 @@
 <html>
 	<meta charset="UTF-8">
 	<title>Tasty Cakes</title>
+	<base href="http://localhost/tc/">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <head>
@@ -20,7 +21,7 @@
 <body oncontextmenu="return false" class="snippet-body">
 
 	<?php 
-		require_once 'blocks/DieuHuong+chat+totop.php';
+		require_once 'blocks/head.php';
 	?>
 
 	<?php

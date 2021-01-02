@@ -55,7 +55,7 @@
     <ul class="ul_user">
   	  	<li class="active cart"id="button">
   	  		<a href="#"data-toggle="collapse" data-target="#demo">
-  	  			<i class="fas fa-search" style= aria-hidden="true"></i>
+  	  			<i class="fas fa-search"  aria-hidden="true"></i>
   	  		</a>
   	  		<ul>
   	  			<li>
@@ -76,15 +76,15 @@
 				</li>
   	  		</ul>
   	  	</li>
-        <li><a href="#home"><i class="fas fa-shopping-cart"></i></a></li>
-        <li><a href="#home"><i class="fas fa-heart"></i></i></a></li>
-        <li><a href="#home"  onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><i class="fas fa-user-circle"></i></a></li>
+        <li><a href="javascript:void(0)"><i class="fas fa-shopping-cart"></i></a></li>
+        <li><a href="javascript:void(0)"><i class="fas fa-heart"></i></i></a></li>
+        <li><a href="javascript:void(0)"  onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><i class="fas fa-user-circle"></i></a></li>
     </ul>
     <div id="id01" class="modal">
 	    <div class="container tal" id="container">
 	        <div class="form-container sign-up-container up">
 	        	<span onclick="document.getElementById('id01').style.display='none'" class="close pr-2" style="font-family: 'Caveat', cursive; cursor:pointer; font-size: 200%;" title="Close Modal">&times;</span>
-	            <form action="#">
+	            <form action="user_action/user_action.php" method="post">
 	                <h2>Tạo tài khoản</h2>
 	                <div class="social-container">
 	                    <a href="#" class="social fb"><i class="fab fa-facebook-f"></i></a>
@@ -92,10 +92,10 @@
 	                    <a href="#" class="social in"><i class="fab fa-linkedin-in"></i></a>
 	                </div>
 	                <span>hoặc sử dụng email của bạn</span>
-	                <input onfocus="this.value=''" type="text" placeholder="Tên" />
-	                <input onfocus="this.value=''" type="email" placeholder="Email" />
-	                <input onfocus="this.value=''" type="password" placeholder="Mật khẩu" />
-	                <button class="buton">Đăng ký</button>
+	                <input onfocus="this.value=''" type="text" placeholder="Tên đăng nhập" name="tdndk" />
+	                <input onfocus="this.value=''" type="email" placeholder="Email" name="eml" />
+	                <input onfocus="this.value=''" type="password" placeholder="Mật khẩu" name="pwdk" />
+	                <button class="buton" type="submit" name="regis" >Đăng ký</button>
 	            </form>
 	        </div>
 	        <div class="form-container sign-in-container up">
