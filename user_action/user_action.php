@@ -49,9 +49,9 @@
         }
     }
     if(isset($_POST["login"])){
-        if($_POST["email"] !==  "" && $_POST["pw"] !==  ""){
+        if($_POST["email"] !==  "" && $_POST["pass"] !==  ""){
             $email = $_POST["email"];
-            $pw = $_POST["pw"];
+            $pw = $_POST["pass"];
             $hpw = "";
             $sql = "
                 SELECT * FROM tb_user 
@@ -60,28 +60,34 @@
             $pre = $conn->prepare($sql);
             $pre->bindParam(":email", $email, PDO::PARAM_STR);
             $pre->execute();
-            $acc = $pre->fetchAll();
-            foreach($acc as $row):
-                if (password_verify($pw, $row["MatKhau"])) {
-                    $_SESSION["idUser"] = $row["idUser"];
-                    $_SESSION["TaiKhoan"] = $row["TaiKhoan"];
-                    $_SESSION["img"] = $row["Avatar"];
-                    $_SESSION["loai"] = $row["idLoaiTK"];
-                    $_SESSION["HoTen"] = $row["HoTen"];
-                    $_SESSION["Email"] = $row["Email"];
-                    $_SESSION["DiaChi"] = $row["DiaChi"];
-                    $_SESSION["SDT"] = $row["SDT"];
-                    //unset($_SESSION['stk']);
-                    header("Location: ../");
-                }else {
-                    $_SESSION["stk"] = "Sai tên đăng nhập hoặc mật khẩu !!";
-                    // echo '<script>alert("Yêu cầu nhập đầy đủ");</script>';
-                    echo '<script> window.history.back();</script>';
+            if($pre->rowCount() > 0){
+                $acc = $pre->fetchAll();
+                foreach($acc as $row){
+                    if (password_verify($pw, $row["MatKhau"])) {
+                        $_SESSION["idUser"] = $row["idUser"];
+                        $_SESSION["TaiKhoan"] = $row["TaiKhoan"];
+                        $_SESSION["img"] = $row["Avatar"];
+                        $_SESSION["loai"] = $row["idLU"];
+                        $_SESSION["HoTen"] = $row["HoTen"];
+                        $_SESSION["Email"] = $row["Email"];
+                        $_SESSION["DiaChi"] = $row["DiaChi"];
+                        $_SESSION["SDT"] = $row["SDT"];
+                        unset($_SESSION['stk']);
+                        header("Location: ../");
+                    }else {
+                        $_SESSION["stk"] = "Sai mật khẩu !!!";
+                        // echo '<script>alert("Yêu cầu nhập đầy đủ");</script>';
+                        echo '<script> window.history.back();</script>';
+                    }
                 }
-            endforeach;
+            }else {
+                $_SESSION["stk"] = "Email không tồn tại !!!";
+                // echo '<script>alert("Yêu cầu nhập đầy đủ");</script>';
+                echo '<script> window.history.back();</script>';
+            }
         }else{
-            echo '<script>alert("Yêu cầu nhập đầy đủ");</script>';
-            echo '<script> window.history.back();</script>';
+            //echo '<script>alert("Yêu cầu nhập đầy đủ");</script>';
+            //echo '<script> window.history.back();</script>';
         }
     }
     if(isset($_POST["dang"])){

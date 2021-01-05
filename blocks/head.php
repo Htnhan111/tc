@@ -100,18 +100,19 @@
 	        </div>
 	        <div class="form-container sign-in-container up">
 	        	<span onclick="document.getElementById('id01').style.display='none'" class="close pr-2" style="font-family: 'Caveat', cursive; cursor:pointer; font-size: 200%;" title="Close Modal">&times;</span>
-	            <form action="#">
+	            <form action="user_action/user_action.php" method="post">
 	                <h2 class="py-2">Đăng nhập</h2>
 	                <div class="social-container">
-	                    <a href="#" class="social fb"><i class="fab fa-facebook-f"></i></a>
-	                    <a href="#" class="social gg"><i class="fab fa-google-plus-g"></i></a>
-	                    <a href="#" class="social in"><i class="fab fa-linkedin-in"></i></a>
+	                    <a href="javascript:void(0)" class="social fb"><i class="fab fa-facebook-f"></i></a>
+	                    <a href="javascript:void(0)" class="social gg"><i class="fab fa-google-plus-g"></i></a>
+	                    <a href="javascript:void(0)" class="social in"><i class="fab fa-linkedin-in"></i></a>
 	                </div>
 	                <span class="or">hoặc dùng tài khoản của bạn</span>
-	                <input type="email" placeholder="Email" />
-	                <input onfocus="this.value=''" type="password" placeholder="Mật khẩu" />
-	                <a class="or" href="#">Quên mật khẩu?</a>
-	                <button class="buton">Đăng nhập</button>
+	                <input type="email" placeholder="Email" name="email" />
+	                <input onfocus="this.value=''" type="password" placeholder="Mật khẩu" name="pass" />
+	                <a class="or" href="javascript:void(0)">Quên mật khẩu?</a>
+	                <button class="buton" type="submit" name="login">Đăng nhập</button>
+					<span style="color:red;font-size:1.5em;" id="erroLogin"></span>
 	            </form>
 	        </div>
 	        <div class="overlay-container">

@@ -1,4 +1,4 @@
-	<!-- banner&links -->
+
 <div class="container-fluid full link">
 		<div  class="carou">
 			<h1>Chi Tiết</h1>
@@ -7,12 +7,6 @@
 	    	<li class="active"><a href="#">Chi tiết</a></li>
 	    </ul>
 	</div>
-</div>
-	<!-- banner&links -->
-
-<!-- Don't care -->
-<div style="display: none;">
-<section class="contentProducts"></section>
 </div>
 
 <div class="container content pb-5">

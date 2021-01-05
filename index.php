@@ -3,7 +3,8 @@
     require_once "admin/dbcon/function.php";
     if( isset($_GET["p"]) ){
         $p = $_GET["p"];
-    }else $p = "";
+	}else $p = "";
+	// unset($_SESSION['stk']);
 ?>
 
 <!DOCTYPE html>
@@ -47,6 +48,19 @@
 	?>
 
  	<script src="public/js/main.js"></script>
+	<?php
+		if( isset($_SESSION["stk"]) ):
+	?>
+        <script>
+			function erroLogin(){
+				document.getElementById('id01').style.display='block';
+				document.getElementById('erroLogin').innerHTML = "<?php echo $_SESSION["stk"]; ?>";
+			}
+			erroLogin();
+		</script>
+	<?php
+		endif;
+    ?>
 </body>
 </html>
 

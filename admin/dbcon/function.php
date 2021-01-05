@@ -33,37 +33,17 @@
             return $pre->fetchAll();
         }
 
-        // Lấy 16 sản phẩm mới nhất
-        function new_product(){
+        // Lấy bánh theo loại bánh
+        function loai_cakes($idLC){
             require "ConDB.php";
             $sql = "
-                SELECT * FROM tb_sanpham 
-                ORDER BY tb_sanpham.idSP DESC 
-                LIMIT 0,16
+                SELECT * FROM tb_loaicake
+                INNER JOIN tb_cakes
+                ON tb_cakes.idLC = tb_loaicake.idLC
+                WHERE tb_loaicake.idLC = :idLC
             ";
             $pre = $conn->prepare($sql);
-            $pre->execute();
-            return $pre->fetchAll();
-        }
-
-        // Lấy thông tin sản phẩm
-        function info_product($idSP){
-            require "ConDB.php";
-            $sql = "
-                SELECT * FROM tb_sanpham
-                INNER JOIN tb_loaisanpham
-                ON tb_sanpham.idLoaiSP = tb_loaisanpham.idLoaiSP
-                INNER JOIN tb_loai
-                ON tb_loaisanpham.idLoai = tb_loai.idLoai
-                INNER JOIN tb_thuonghieu
-                ON tb_sanpham.idTH = tb_thuonghieu.idTH
-                INNER JOIN tb_ttsanpham
-                ON tb_sanpham.idTTSP = tb_ttsanpham.idTTSP
-                WHERE idSP = :idSP
-                
-            ";
-            $pre = $conn->prepare($sql);
-            $pre->bindParam(":idSP", $idSP, PDO::PARAM_INT);
+            $pre->bindParam(":idLC", $idLC, PDO::PARAM_INT);
             $pre->execute();
             return $pre->fetchAll();
         }

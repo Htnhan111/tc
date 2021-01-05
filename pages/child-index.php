@@ -104,24 +104,30 @@
 
 		                        		<!--(Lặp nhiều 1 chút, t để 1 sp nó chạy full không sao, cứ đổ vô là nó chạy lần lượt, phía cuối nó có 1 khoảng trống thì kệ nó, không ai quan tâm đâu)		
 		                        		-->
-
-		                        		<!-- Lặp -->
-		                        		<div class="owl-item sp" >
-			                            	<div class="owl-item">
-			                                    <div class="bbb_viewed_item is_new d-flex flex-column align-items-center justify-content-center text-center">
-			                                        <div class="bbb_viewed_image"><img src="public/img/cake.png" alt=""></div>
-			                                        <div class="bbb_viewed_content text-center">
-			                                            <div class="bbb_viewed_price">300.000<sup>đ</sup></div>
-			                                            <div class="bbb_viewed_name"><a href="#">Bánh fuck you</a></div>
-			                                        </div>
-			                                        <ul class="item_marks">
-			                                            <li class="item_mark item_discount">-25%</li>
-			                                            <li class="item_mark item_new">new</li>
-			                                        </ul>
-			                                    </div>
-			                                </div>
-			                            </div>
-			                            <!-- Lặp -->
+										<?php
+											$loai_cakes = loai_cakes(1);
+											foreach($loai_cakes as $lc):
+										?>
+											<!-- Lặp -->
+											<div class="owl-item sp" >
+												<div class="owl-item">
+													<div class="bbb_viewed_item is_new d-flex flex-column align-items-center justify-content-center text-center">
+														<div class="bbb_viewed_image"><img src="public/img/cakes/<?php echo $lc["Anh"]; ?>" alt=""></div>
+														<div class="bbb_viewed_content text-center">
+															<div class="bbb_viewed_price"><?php echo $lc["GiaGiam"]; ?><sup> đ</sup></div>
+															<div class="bbb_viewed_name"><a href="#"><?php echo $lc["TenBanh"]; ?></a></div>
+														</div>
+														<ul class="item_marks">
+															<li class="item_mark item_discount">-25%</li>
+															<li class="item_mark item_new">new</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+											<!-- Lặp -->
+										<?php
+											endforeach;
+										?>
 		                    		</div>
 		                		</div>
 		                    	<div class="owl-nav disabled">
@@ -154,23 +160,30 @@
 		                        		<!--(Lặp nhiều 1 chút, t để 1 sp nó chạy full không sao, cứ đổ vô là nó chạy lần lượt, phía cuối nó có 1 khoảng trống thì kệ nó, không ai quan tâm đâu)		
 		                        		-->
 
-		                        		<!-- Lặp -->
-		                        		<div class="owl-item sp" >
-			                            	<div class="owl-item">
-			                                    <div class="bbb_viewed_item is_new d-flex flex-column align-items-center justify-content-center text-center">
-			                                        <div class="bbb_viewed_image"><img src="public/img/cake.png" alt=""></div>
-			                                        <div class="bbb_viewed_content text-center">
-			                                            <div class="bbb_viewed_price">3000.000<sup>đ</sup></div>
-			                                            <div class="bbb_viewed_name"><a href="#">Bánh mother fucker</a></div>
-			                                        </div>
-			                                        <ul class="item_marks">
-			                                            <li class="item_mark item_discount">-25%</li>
-			                                            <li class="item_mark item_new">new</li>
-			                                        </ul>
-			                                    </div>
-			                                </div>
-			                            </div>
-			                            <!-- Lặp -->
+		                        		<?php
+											$loai_cakes = loai_cakes(7);
+											foreach($loai_cakes as $lc):
+										?>
+											<!-- Lặp -->
+											<div class="owl-item sp" >
+												<div class="owl-item">
+													<div class="bbb_viewed_item is_new d-flex flex-column align-items-center justify-content-center text-center">
+														<div class="bbb_viewed_image"><img src="public/img/cakes/<?php echo $lc["Anh"]; ?>" alt=""></div>
+														<div class="bbb_viewed_content text-center">
+															<div class="bbb_viewed_price"><?php echo $lc["GiaGiam"]; ?><sup> đ</sup></div>
+															<div class="bbb_viewed_name"><a href="#"><?php echo $lc["TenBanh"]; ?></a></div>
+														</div>
+														<ul class="item_marks">
+															<li class="item_mark item_discount">-25%</li>
+															<li class="item_mark item_new">new</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+											<!-- Lặp -->
+										<?php
+											endforeach;
+										?>
 		                    		</div>
 		                		</div>
 		                    	<div class="owl-nav disabled">
@@ -189,7 +202,7 @@
 		        <div class="col">
 		            <div class="bbb_main_container">
 		                <div class="bbb_viewed_title_container">
-		                    <h3 class="bbb_viewed_title">BÁNH GATO</h3>
+		                    <h3 class="bbb_viewed_title">BÁNH NƯỚNG NHỎ</h3>
 		                    <div class="bbb_viewed_nav_container">
 		                        <div class="bbb_viewed_nav ccc_viewed_prev"><i class="fas fa-chevron-left"></i></div>
 		                        <div class="bbb_viewed_nav ccc_viewed_next"><i class="fas fa-chevron-right"></i></div>
@@ -203,23 +216,30 @@
 		                        		<!--(Lặp nhiều 1 chút, t để 1 sp nó chạy full không sao, cứ đổ vô là nó chạy lần lượt, phía cuối nó có 1 khoảng trống thì kệ nó, không ai quan tâm đâu)		
 		                        		-->
 
-		                        		<!-- Lặp -->
-		                        		<div class="owl-item sp" >
-			                            	<div class="owl-item">
-			                                    <div class="bbb_viewed_item is_new d-flex flex-column align-items-center justify-content-center text-center">
-			                                        <div class="bbb_viewed_image"><img src="public/img/cake.png" alt=""></div>
-			                                        <div class="bbb_viewed_content text-center">
-			                                            <div class="bbb_viewed_price">3.000<sup>đ</sup></div>
-			                                            <div class="bbb_viewed_name"><a href="#">Bánh gato chưa tml</a></div>
-			                                        </div>
-			                                        <ul class="item_marks">
-			                                            <li class="item_mark item_discount">-25%</li>
-			                                            <li class="item_mark item_new">new</li>
-			                                        </ul>
-			                                    </div>
-			                                </div>
-			                            </div>
-			                            <!-- Lặp -->
+		                        		<?php
+											$loai_cakes = loai_cakes(4);
+											foreach($loai_cakes as $lc):
+										?>
+											<!-- Lặp -->
+											<div class="owl-item sp" >
+												<div class="owl-item">
+													<div class="bbb_viewed_item is_new d-flex flex-column align-items-center justify-content-center text-center">
+														<div class="bbb_viewed_image"><img src="public/img/cakes/<?php echo $lc["Anh"]; ?>" alt=""></div>
+														<div class="bbb_viewed_content text-center">
+															<div class="bbb_viewed_price"><?php echo $lc["GiaGiam"]; ?><sup> đ</sup></div>
+															<div class="bbb_viewed_name"><a href="#"><?php echo $lc["TenBanh"]; ?></a></div>
+														</div>
+														<ul class="item_marks">
+															<li class="item_mark item_discount">-25%</li>
+															<li class="item_mark item_new">new</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+											<!-- Lặp -->
+										<?php
+											endforeach;
+										?>
 		                    		</div>
 		                		</div>
 		                    	<div class="owl-nav disabled">
@@ -236,7 +256,9 @@
     <!-- =======================Lặp ở trên===================== -->
     <!-- Bánh mới -->
 	<div>
-		<section class="contentProducts"></section>
+		<section class="contentProducts">
+											
+		</section>
 	</div>
 	<div id="DaoTao" class=" container tal daotao bg-white my-4" style="background-image: url(public/img/e.jpg);">
 		<div class="row py-4">
