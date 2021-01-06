@@ -67,6 +67,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="./?p=show-cakes">Bánh</a>
                 <a class="collapse-item" href="./?p=show-menu">Menu Bánh</a>
+                <a class="collapse-item" href="./?p=show-orders">Đơn hàng</a>
             </div>
         </div>
     </li>

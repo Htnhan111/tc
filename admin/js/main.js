@@ -53,11 +53,18 @@
 //     mc.innerHTML = giagoc;
 // }
 
-// function editCake(ele){
-//     const id = ele.getAttribute("data-id"); 
-//     document.getElementById('edit-cake').style.display='block'
-//     $.get("pages/cake/sua_cake.php", {idCake:id}, function(data){
-//         $("#edit-cake").html(data);
-//     });
-// }
-
+function detailOrder(ele){
+    const id = ele.getAttribute("data-id"); 
+    document.getElementById('detail').style.display='block';
+    $.get("pages/order/detail_order.php", {idOrder:id}, function(data){
+        $("#detail").html(data);
+    });
+}
+function changeStt(ele){
+    const stt = ele.getAttribute("data-stt"); 
+    const id = ele.getAttribute("data-id"); 
+    document.getElementById('changestt').style.display='block';
+    $.get("pages/order/status.php", {idStt:stt,idOrder:id}, function(data){
+        $("#changestt").html(data);
+    });
+}

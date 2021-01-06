@@ -144,7 +144,7 @@ img.avatar {
     from {transform: scale(0)} 
     to {transform: scale(1)}
 }
-#thongtin{
+#detail{
     display: none;
     margin: 2% 10%;
     width: 80%;

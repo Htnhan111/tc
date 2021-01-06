@@ -32,7 +32,6 @@
             $pre->execute();
             return $pre->fetchAll();
         }
-
         // Lấy bánh theo loại bánh
         function loai_cakes($idLC){
             require "ConDB.php";
@@ -47,8 +46,6 @@
             $pre->execute();
             return $pre->fetchAll();
         }
-
-        
     #
 
     # Loại bánh func
@@ -64,6 +61,30 @@
         }
     #
     
+    # Đơn hàng func
+        // Lấy tất cả đơn hàng
+        function all_orders(){
+            require "ConDB.php";
+            $sql = "
+                SELECT * FROM tb_order
+                INNER JOIN tb_orderstatus
+                ON tb_order.idOS = tb_orderstatus.idOS
+            ";
+            $pre = $conn->prepare($sql);
+            $pre->execute();
+            return $pre->fetchAll();
+        }
+        // Lấy trạng thái đơn hàng
+        function status_order(){
+            require "ConDB.php";
+            $sql = "
+                SELECT * FROM tb_orderstatus
+            ";
+            $pre = $conn->prepare($sql);
+            $pre->execute();
+            return $pre->fetchAll();
+        }
+    #
 
 
 ?>
