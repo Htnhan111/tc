@@ -46,6 +46,19 @@
             $pre->execute();
             return $pre->fetchAll();
         }
+        // Lấy bánh mới
+        function new_cakes(){
+            require "ConDB.php";
+            $sql = "
+                SELECT * FROM tb_loaicake
+                INNER JOIN tb_cakes
+                ON tb_cakes.idLC = tb_loaicake.idLC
+                LIMIT 0,8
+            ";
+            $pre = $conn->prepare($sql);
+            $pre->execute();
+            return $pre->fetchAll();
+        }
     #
 
     # Loại bánh func
@@ -83,6 +96,36 @@
             $pre = $conn->prepare($sql);
             $pre->execute();
             return $pre->fetchAll();
+        }
+    #
+
+    # Tìm kiếm phân trang
+        // Lấy bánh theo loại bánh
+        function cakes_menu($idLC, $start){
+            require "ConDB.php";
+            $sql = "
+                SELECT * FROM tb_cakes
+                INNER JOIN tb_loaicake
+                ON tb_cakes.idLC = tb_loaicake.idLC
+                WHERE tb_cakes.idLC = :idLC
+                LIMIT 0,12
+            ";
+            $pre = $conn->prepare($sql);
+            $pre->bindParam(":idLC", $idLC, PDO::PARAM_INT);
+            $pre->execute();
+            return $pre->fetchAll();
+        }
+        // Lấy số lượng bánh theo loại bánh
+        function count_cakes_menu($idLC){
+            require "ConDB.php";
+            $sql = "
+                SELECT idCake FROM tb_cakes
+                WHERE tb_cakes.idLC = :idLC
+            ";
+            $pre = $conn->prepare($sql);
+            $pre->bindParam(":idLC", $idLC, PDO::PARAM_INT);
+            $pre->execute();
+            return $pre->rowCount();
         }
     #
 

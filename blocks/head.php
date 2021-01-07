@@ -4,51 +4,52 @@
 		  <div class="w3-bar-item w3-col w3-container pt-2 topnav w3-hide-small"style="width:40%">
 		  	<div class="w3-row">
 			  <div class="w3-col w3-container" style="width:33%">
-			  	<a class="nav-link js-scroll-trigger font a" href="#" >TRANG CHỦ</a>
+			  	<a class="nav-link js-scroll-trigger font a" href="./" >TRANG CHỦ</a>
 			  </div>
 			  <div class="w3-col w3-container element a" style="width:33%">
 			  	<div class="w3-dropdown-hover nav-link js-scroll-trigger font">
-                    <button class="w3-button b js-scroll-trigger" onclick="window.location.href='#Menu'" id="w3">MENU</button>
+                    <button class="w3-button b js-scroll-trigger" id="w3">MENU</button>
                     <div class="w3-dropdown-content fixe">
                         <ul class="cent py-3">
-                            <li class="pb-3"><a href="#" class="w3-bar-item w3-button">Bánh Kem</a></li>
-                            <li class="py-3"><a href="#" class="w3-bar-item w3-button">Bánh Quy</a></li>
-                            <li class="py-3"><a href="#" class="w3-bar-item w3-button">Bánh Mì</a></li>
-                            <li class="py-3"><a href="#" class="w3-bar-item w3-button">Bánh Nướng nhỏ</a></li>
-                            <li class="py-3"><a href="#" class="w3-bar-item w3-button">Bánh Bao</a></li>
-                            <li class="py-3"><a href="#" class="w3-bar-item w3-button">Bánh Ổ Dài</a></li>
-                            <li class="py-3"><a href="#" class="w3-bar-item w3-button">Bánh Donut</a></li>
+							<?php
+								$menu = all_loai();
+								foreach($menu as $m):
+							?>
+                            <li class="pb-3"><a href="./?p=menu&idLC=<?php echo $m["idLC"]; ?>&loai=<?php echo $m["LCKD"]; ?>" class="w3-bar-item w3-button"><?php echo $m["LoaiCake"]; ?></a></li>
+							<?php
+								endforeach;
+							?>
                         </ul>
                   </div>
                 </div>
 			  </div>
 			  <div class="w3-col w3-container  element a" style="width:33%">
 			  	<div class="w3-dropdown-hover nav-link js-scroll-trigger font">
-			  		<button class="w3-button b js-scroll-trigger" onclick="window.location.href='#BanhMoi'" id="w3">BÁNH MỚI</button>
+			  		<button class="w3-button b js-scroll-trigger" onclick="window.location.href=''" id="w3">BÁNH MỚI</button>
                 </div>
 			  </div>
 			</div>
 		  </div>
 		  <div class="w3-col w3-container screen" style="width:20%">
-		  		<a href="#" style="display: flex;justify-content: center;"><img class=" brand mr-8" src="public/img/coverPS.png"></a>
+		  		<a href="./" style="display: flex;justify-content: center;"><img class=" brand mr-8" src="public/img/coverPS.png"></a>
 		  </div>
 		  <div class="w3-bar-item w3-col w3-container w3-hide-small pt-2" style="width:40%">
 		  	<div class="w3-row">
-			  <div class="w3-col w3-container" style="width:40%"><a class="nav-link js-scroll-trigger font a" href="#DaoTao">ĐÀO TẠO</a></div>
-			  <div class="w3-col w3-container" style="width:40%"><a class="nav-link js-scroll-trigger font a" href="#About">VỀ CHÚNG TÔI</a></div>
-			  <div class="w3-col w3-container" style="width:20%"><a class="nav-link js-scroll-trigger font a" href="#HoTro">HỖ TRỢ</a></div>
+			  <div class="w3-col w3-container" style="width:40%"><a class="nav-link js-scroll-trigger font a" href="javascript:void(0)">ĐÀO TẠO</a></div>
+			  <div class="w3-col w3-container" style="width:40%"><a class="nav-link js-scroll-trigger font a" href="javascript:void(0)">VỀ CHÚNG TÔI</a></div>
+			  <div class="w3-col w3-container" style="width:20%"><a class="nav-link js-scroll-trigger font a" href="javascript:void(0)">HỖ TRỢ</a></div>
 			</div>
 		  </div>
 	</div>
 </div>
 <!-- hide -->
 <div id="navDemo" class="w3-bar-block w3-hide w3-hide-large w3-hide-medium wid w3-top w3-right" style="z-index: 50;">
-  	<a href="#" class="w3-bar-item w3-button w3-right padding js-scroll-trigger" onclick="myFunction()">TRANG CHỦ</a>
-  	<a href="#Menu" class="w3-bar-item w3-button w3-right padding js-scroll-trigger" onclick="myFunction()">MENU</a>
-  	<a href="#BanhMoi" class="w3-bar-item w3-button w3-right padding js-scroll-trigger" onclick="myFunction()">BÁNH MỚI</a>
-  	<a href="#DaoTao" class="w3-bar-item w3-button w3-right padding js-scroll-trigger" onclick="myFunction()">ƯA CHUỘNG</a>
-  	<a href="#About" class="w3-bar-item w3-button w3-right padding js-scroll-trigger" onclick="myFunction()">VỀ CHÚNG TÔI</a>
-  	<a href="#Hotro" class="w3-bar-item w3-button w3-right padding js-scroll-trigger" onclick="myFunction()">HỖ TRỢ</a>
+  	<a href="./" class="w3-bar-item w3-button w3-right padding js-scroll-trigger" onclick="myFunction()">TRANG CHỦ</a>
+  	<a href="javascript:void(0)" class="w3-bar-item w3-button w3-right padding js-scroll-trigger" onclick="myFunction()">MENU</a>
+  	<a href="javascript:void(0)" class="w3-bar-item w3-button w3-right padding js-scroll-trigger" onclick="myFunction()">BÁNH MỚI</a>
+  	<a href="javascript:void(0)" class="w3-bar-item w3-button w3-right padding js-scroll-trigger" onclick="myFunction()">ƯA CHUỘNG</a>
+  	<a href="javascript:void(0)" class="w3-bar-item w3-button w3-right padding js-scroll-trigger" onclick="myFunction()">VỀ CHÚNG TÔI</a>
+  	<a href="javascript:void(0)" class="w3-bar-item w3-button w3-right padding js-scroll-trigger" onclick="myFunction()">HỖ TRỢ</a>
 </div>
 <!-- User cuon theo trang -->
 <div class="user">

@@ -31,14 +31,19 @@
 			case "home" : require "pages/child-index.php"; break;
 
 			case "cake" : require "pages/child-detail.php"; break;
+				if( isset($_GET["idCake"]) && isset($_GET["name"])){
+					require "pages/child-detail.php"; break;
+				}else{
+					require "pages/dashboard.php"; break;
+				}
 
 			case "cart" : require "pages/child-cart.php"; break;
-			// case "sua-product" : 
-			//     if( isset($_GET["idSP"]) ){
-			//         require "pages/product/sua_product.php"; break;
-			//     }else{
-			//         require "pages/dashboard.php"; break;
-			//     }
+			case "menu" : 
+			    if( isset($_GET["idLC"]) && isset($_GET["loai"]) ){
+			        require "pages/child-result-menu.php"; break;
+			    }else{
+			        require "pages/dashboard.php"; break;
+			    }
 			default : require "pages/child-index.php";
 		}
 	?>

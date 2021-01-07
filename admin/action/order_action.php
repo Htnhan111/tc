@@ -9,21 +9,21 @@ require "../dbcon/ConDB.php";
             WHERE idOrder = :idOrder;
         ";
         $pre = $conn->prepare($sql);
-        $pre->bindParam(":idOS", $idOS, PDO::PARAM_INT);
+        $pre->bindParam(":idOS", $stt, PDO::PARAM_INT);
         $pre->bindParam(":idOrder", $idOrder, PDO::PARAM_INT);
         $pre->execute();
         header("location:../?p=show-orders");
         
     }
-    if( isset($_POST["xoa"])){
-        $idLC = filter_input(INPUT_POST, 'idLC');
-        $sql = "
-            DELETE FROM tb_loaicake
-            WHERE idLC = :idLC;
-        ";
-        $pre = $conn->prepare($sql);
-        $pre->bindParam(":idLC", $idLC, PDO::PARAM_INT);
-        $pre->execute();
-        header("location:../?p=show-menu");
-    }
+    // if( isset($_POST["xoa"])){
+    //     $idLC = filter_input(INPUT_POST, 'idLC');
+    //     $sql = "
+    //         DELETE FROM tb_loaicake
+    //         WHERE idLC = :idLC;
+    //     ";
+    //     $pre = $conn->prepare($sql);
+    //     $pre->bindParam(":idLC", $idLC, PDO::PARAM_INT);
+    //     $pre->execute();
+    //     header("location:../?p=show-menu");
+    // }
 ?>

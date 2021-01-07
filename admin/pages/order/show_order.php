@@ -43,8 +43,10 @@
                         <td><?php echo number_format($order["TongTien"], 0, ",", "."); ?></td>
                         <td><?php echo $order["ThoiGian"]; ?></td>
                         <td>
-                            <?php echo $order["TrangThai"]; ?> <br>
-                            <a href="javascript:void(0)" data-stt="<?php echo $order["idOS"]; ?>" data-id="<?php echo $order["idOrder"]; ?>" onclick="changeStt(this)">Đổi trạng thái</a>
+                            <a href="javascript:void(0)" data-stt="<?php echo $order["idOS"]; ?>" data-id="<?php echo $order["idOrder"]; ?>" 
+                            onclick="changeStt(this)" title="Nhấn để đổi trạng thái đơn hàng">
+                                <?php echo $order["TrangThai"]; ?>
+                            </a>
                         </td>
                         <td>
                             <form action="././action/order_action.php" method="post" style="display: inline;" 
@@ -67,15 +69,7 @@
 
             <!-- đổi trạng thái đơn hàng -->
             <div id="changestt" class="modal">
-                <form class="modal-content animate" action="././action/order_action.php" method="post" enctype='multipart/form-data'>
-                    <div class="form form-them-banh" style="width: 50%;">
-                        <span onclick="document.getElementById('changestt').style.display='none'" class="close" title="Close Modal">&times;</span>
-                        <h4>Đổi trạng thái</h4>
-                        <label for="stt">Trạng thái: </label>
-                        <input type="text"  name="loaicake" class="form-control form-control-sm in-s"><br>
-                        <button type="submit" name="changestt" class="btn-sub">Đổi</button>
-                    </div>
-                </form>
+                
             </div>
         </div>
     </div>
