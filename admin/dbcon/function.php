@@ -129,5 +129,18 @@
         }
     #
 
-
+    # Người dùng func
+        // Lấy tất cả người dùng
+        function all_users(){
+            require "ConDB.php";
+            $sql = "
+                SELECT * FROM tb_user
+                INNER JOIN tb_loaiuser
+                ON tb_user.idLU = tb_loaiuser.idLU
+            ";
+            $pre = $conn->prepare($sql);
+            $pre->execute();
+            return $pre->fetchAll();
+        }
+    #
 ?>

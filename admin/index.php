@@ -80,6 +80,8 @@
                         case "show-menu" : require "pages/menu/show_menu.php"; break;
                         // điều hướng quản lý đơn hàng
                         case "show-orders" : require "pages/order/show_order.php"; break;
+                        // điều hướng quản lý người dùng
+                        case "show-users" : require "pages/user/show_user.php"; break;
                         // case "add-product" : require "pages/product/add_product.php"; break;
                         // case "sua-product" : 
                         //     if( isset($_GET["idSP"]) ){

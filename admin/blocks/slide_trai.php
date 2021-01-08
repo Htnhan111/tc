@@ -68,6 +68,7 @@
                 <a class="collapse-item" href="./?p=show-cakes">Bánh</a>
                 <a class="collapse-item" href="./?p=show-menu">Menu Bánh</a>
                 <a class="collapse-item" href="./?p=show-orders">Đơn hàng</a>
+                <a class="collapse-item" href="./?p=show-users">Người dùng</a>
             </div>
         </div>
     </li>
