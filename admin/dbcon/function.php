@@ -99,7 +99,7 @@
         }
     #
 
-    # Tìm kiếm phân trang
+    # Tìm kiếm menu phân trang
         // Lấy bánh theo loại bánh
         function cakes_menu($idLC, $start){
             require "ConDB.php";
@@ -108,10 +108,11 @@
                 INNER JOIN tb_loaicake
                 ON tb_cakes.idLC = tb_loaicake.idLC
                 WHERE tb_cakes.idLC = :idLC
-                LIMIT 0,12
+                LIMIT :start,12
             ";
             $pre = $conn->prepare($sql);
             $pre->bindParam(":idLC", $idLC, PDO::PARAM_INT);
+            $pre->bindParam(":start", $start, PDO::PARAM_INT);
             $pre->execute();
             return $pre->fetchAll();
         }
@@ -120,12 +121,72 @@
             require "ConDB.php";
             $sql = "
                 SELECT idCake FROM tb_cakes
-                WHERE tb_cakes.idLC = :idLC
+                WHERE idLC = :idLC
             ";
             $pre = $conn->prepare($sql);
             $pre->bindParam(":idLC", $idLC, PDO::PARAM_INT);
             $pre->execute();
             return $pre->rowCount();
+        }
+        // Lấy số lượng bánh theo loại bánh xếp theo lượt thích
+        function cakes_menu_ln($idLC, $start){
+            require "ConDB.php";
+            $sql = "
+                SELECT * FROM tb_cakes
+                WHERE tb_cakes.idLC = :idLC
+                ORDER BY LuotThich DESC
+                LIMIT :start,12
+            ";
+            $pre = $conn->prepare($sql);
+            $pre->bindParam(":idLC", $idLC, PDO::PARAM_INT);
+            $pre->bindParam(":start", $start, PDO::PARAM_INT);
+            $pre->execute();
+            return $pre->fetchAll();
+        }
+        // Lấy số lượng bánh theo loại bánh xếp theo mua nhiều
+        function cakes_menu_mn($idLC, $start){
+            require "ConDB.php";
+            $sql = "
+                SELECT * FROM tb_cakes
+                WHERE tb_cakes.idLC = :idLC
+                ORDER BY DaBan DESC
+                LIMIT :start,12
+            ";
+            $pre = $conn->prepare($sql);
+            $pre->bindParam(":idLC", $idLC, PDO::PARAM_INT);
+            $pre->bindParam(":start", $start, PDO::PARAM_INT);
+            $pre->execute();
+            return $pre->fetchAll();
+        }
+        // Lấy số lượng bánh theo loại bánh xếp theo giá giảm dần
+        function cakes_menu_gg($idLC, $start){
+            require "ConDB.php";
+            $sql = "
+                SELECT * FROM tb_cakes
+                WHERE tb_cakes.idLC = :idLC
+                ORDER BY GiaGiam DESC
+                LIMIT :start,12
+            ";
+            $pre = $conn->prepare($sql);
+            $pre->bindParam(":idLC", $idLC, PDO::PARAM_INT);
+            $pre->bindParam(":start", $start, PDO::PARAM_INT);
+            $pre->execute();
+            return $pre->fetchAll();
+        }
+        // Lấy số lượng bánh theo loại bánh xếp theo giá tăng dần
+        function cakes_menu_gt($idLC, $start){
+            require "ConDB.php";
+            $sql = "
+                SELECT * FROM tb_cakes
+                WHERE tb_cakes.idLC = :idLC
+                ORDER BY GiaGiam ASC
+                LIMIT :start,12
+            ";
+            $pre = $conn->prepare($sql);
+            $pre->bindParam(":idLC", $idLC, PDO::PARAM_INT);
+            $pre->bindParam(":start", $start, PDO::PARAM_INT);
+            $pre->execute();
+            return $pre->fetchAll();
         }
     #
 
@@ -139,6 +200,24 @@
                 ON tb_user.idLU = tb_loaiuser.idLU
             ";
             $pre = $conn->prepare($sql);
+            $pre->execute();
+            return $pre->fetchAll();
+        }
+    #
+
+    # Bình luận
+        // Lấy bình luận của 1 bánh
+        function cake_cmts($idCake){
+            require "ConDB.php";
+            $sql = "
+                SELECT * FROM tb_comment
+                INNER JOIN tb_user
+                ON tb_user.idUser = tb_comment.idUser
+                WHERE tb_comment.idCake = :idCake
+                ORDER BY idCmt DESC
+            ";
+            $pre = $conn->prepare($sql);
+            $pre->bindParam(":idCake", $idCake, PDO::PARAM_INT);
             $pre->execute();
             return $pre->fetchAll();
         }

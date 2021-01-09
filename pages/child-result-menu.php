@@ -7,6 +7,26 @@
     }
     $start = ($currentPage - 1)*12;
     $count = count_cakes_menu($idLC);
+    $cakes;
+    if(isset($_GET["sort"])){
+        switch($_GET["sort"]){
+            case "like-nhieu" :
+                $cakes = cakes_menu_ln($idLC, $start);
+                break;
+            case "mua-nhieu" :
+                $cakes = cakes_menu_mn($idLC, $start);
+                break;
+            case "gia-tang-dan" :
+                $cakes = cakes_menu_gt($idLC, $start);
+                break;
+            case "gia-giam-dan" :
+                $cakes = cakes_menu_gg($idLC, $start);
+                break;
+            default : $cakes = cakes_menu($idLC, $start);
+        }
+    }else{
+        $cakes = cakes_menu($idLC, $start);
+    }
 ?>
 
 <!-- banner&links -->
@@ -22,14 +42,31 @@
 <!-- banner&links -->
 
     <div class="de px-5 py-3">
-        <h4  style="display:contents;">KẾT QUẢ TÌM KIẾM: <?php echo $count; ?> Bánh</h4>
+        <div class="row justify-content-between">
+            <div class="col-6 col-sm-6 col-md-5 col-lg-4 col-xl-4 pl-5">
+                <h4  style="display:contents;">KẾT QUẢ TÌM KIẾM: <?php echo $count; ?> Bánh</h4>
+            </div>
+            <div class="col-5 col-sm-4 col-md-3 col-lg-3 col-xl-2">
+                <div class="wrap" style="text-align: center;">
+                    <a data-toggle="collapse" href="#collapse1"><i class="fas fa-filter"></i> Bộ lọc </a>
+
+                    <div id="collapse1" class=" divloc panel-collapse collapse" style="background-color: #c4c8cc;">
+                        <ul style="margin:0;">
+                            <li><a href="./?p=menu&idLC=<?php echo $_GET["idLC"]; ?>&loai=<?php echo $_GET["loai"]; ?>&sort=like-nhieu" style="display: block;padding: 7px 0;">Yêu thích</a></li>
+                            <li><a href="./?p=menu&idLC=<?php echo $_GET["idLC"]; ?>&loai=<?php echo $_GET["loai"]; ?>&sort=mua-nhieu" style="display: block;padding: 7px 0;">Mua nhiều</a></li>
+                            <li><a href="./?p=menu&idLC=<?php echo $_GET["idLC"]; ?>&loai=<?php echo $_GET["loai"]; ?>&sort=gia-tang-dan" style="display: block;padding: 7px 0;">Giá tăng dần</a></li>
+                            <li><a href="./?p=menu&idLC=<?php echo $_GET["idLC"]; ?>&loai=<?php echo $_GET["loai"]; ?>&sort=gia-giam-dan" style="display: block;padding: 7px 0;">Giá giảm dần</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 	<div class="container-fluid">
         <div class="contentProducts__card">
             <div class="row mx-0 px-3">
                 <?php
-                    $cakes = cakes_menu($idLC, $start);
                     foreach($cakes as $cake):
                         $pt = 100 - (($cake["GiaGiam"]*100)/$cake["GiaGoc"]);
                 		$pt = round($pt, 0, PHP_ROUND_HALF_UP);
@@ -38,13 +75,13 @@
                     <div class="contentProducts__card anime ">
                         <div class="contentProducts__image">
                             <div class="contentProducts__label">-<?php echo $pt; ?>%</div>
-                            <a href="#"><img src="public/img/cakes/<?php echo $cake["Anh"]; ?>" alt="undefined"></a>
+                            <a href="./?p=cake&idCake=<?php echo $cake["idCake"]; ?>&name=<?php echo $cake["TenKD"]; ?>"><img src="public/img/cakes/<?php echo $cake["Anh"]; ?>" alt="undefined"></a>
                         </div>
                         <div class="contentProducts__text">
                                 <h4 class="contentProducts__productTitle text-center"><?php echo $cake["TenBanh"]; ?></h4>
                                 <div class="contentProducts__priceContainer row">
                                     <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
-                                        <a href="#">
+                                        <a href="./?p=cake&idCake=<?php echo $cake["idCake"]; ?>&name=<?php echo $cake["TenKD"]; ?>">
                                         <div class="contentProducts__priceFinal"><?php echo number_format($cake["GiaGiam"], 0, ",", "."); ?> đ</div>
                                         </a>
                                         <sub class="del"><?php echo number_format($cake["GiaGoc"], 0, ",", "."); ?> đ</sub>
@@ -59,7 +96,7 @@
                                 <div class="row web-kit">
                                     <div class="col-6 px-0">
                                         <div class="contentProducts__link">
-                                            <a href="#">
+                                            <a href="javascript:void(0)">
                                                 <span title="Thêm vào giỏ hàng" class="org">Thêm vào giỏ
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-plus" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#698ccd" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z"></path>
@@ -122,13 +159,22 @@
             ?>
                 <a href="<?php
                     if($p === '<'){
-                        echo "./?p=loai-san-pham&idLoaiSP=".$idLoaiSP."&type=".$type."&trang=".($currentPage-1);
+                        if(isset($_GET["sort"])){
+                            echo "./?p=menu&idLC=".$idLC."&loai=".$_GET["loai"]."&sort=".$_GET["sort"]."&trang=".($currentPage-1);
+                        }
+                        echo "./?p=menu&idLC=".$idLC."&loai=".$_GET["loai"]."&trang=".($currentPage-1);
                     }
                     else if($p === '>'){
-                        echo "./?p=loai-san-pham&idLoaiSP=".$idLoaiSP."&type=".$type."&trang=".($currentPage+1);
+                        if(isset($_GET["sort"])){
+                            echo "./?p=menu&idLC=".$idLC."&loai=".$_GET["loai"]."&sort=".$_GET["sort"]."&trang=".($currentPage+1);
+                        }
+                        echo "./?p=menu&idLC=".$idLC."&loai=".$_GET["loai"]."&trang=".($currentPage+1);
                     }
                     else{
-                        echo "./?p=loai-san-pham&idLoaiSP=".$idLoaiSP."&type=".$type."&trang=".$p;
+                        if(isset($_GET["sort"])){
+                            echo "./?p=menu&idLC=".$idLC."&loai=".$_GET["loai"]."&sort=".$_GET["sort"]."&trang=".$p;
+                        }
+                        echo "./?p=menu&idLC=".$idLC."&loai=".$_GET["loai"]."&trang=".$p;
                     }
                 ?>" style="margin:0 5px;text-decoration: none;<?php if($p == $currentPage){echo "color:red;";} ?>">
                     <?php echo $p; ?>

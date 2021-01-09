@@ -94,17 +94,17 @@
         if($_POST["cmt"] !==  ""){
             $cmt = $_POST["cmt"];
             $idUser = $_POST["idUser"];
-            $idSP = $_POST["idSP"];
+            $idCake = $_POST["idCake"];
             $sql = "
-                INSERT INTO tb_comment (idCmt, idUser, idSP, NoiDung, NgayTao) 
-                VALUES (NULL, :idUser, :idSP, :cmt, CURRENT_TIME());
+                INSERT INTO tb_comment (idCmt, idUser, idCake, NoiDung, NgayTao) 
+                VALUES (NULL, :idUser, :idCake, :cmt, CURRENT_TIME());
             ";
             $pre = $conn->prepare($sql);
             $pre->bindParam(":idUser", $idUser, PDO::PARAM_INT);
-            $pre->bindParam(":idSP", $idSP, PDO::PARAM_INT);
+            $pre->bindParam(":idCake", $idCake, PDO::PARAM_INT);
             $pre->bindParam(":cmt", $cmt, PDO::PARAM_STR);
             $pre->execute();
-            echo "<script> window.history.back(); </script>";
+            header("Location: ../?p=cake&idCake=".$idCake."name=".$_POST["name"]);
         }else{
             echo '<script>alert("Yêu cầu nhập đầy đủ");</script>';
             echo "<script> window.history.back(); </script>";

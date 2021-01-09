@@ -118,7 +118,7 @@
 			                                        <div class="bbb_viewed_image"><img src="public/img/cakes/<?php echo $lc["Anh"]; ?>" alt=""></div>
 			                                        <div class="bbb_viewed_content text-center">
 			                                            <div class="bbb_viewed_price"><?php echo number_format($lc["GiaGiam"], 0, ",", "."); ?><sup> đ</sup></div>
-			                                            <div class="bbb_viewed_name"><a href="javascript:void(0)"><?php echo $lc["TenBanh"]; ?></a></div>
+			                                            <div class="bbb_viewed_name"><a href="./?p=cake&idCake=<?php echo $lc["idCake"]; ?>&name=<?php echo $lc["TenKD"]; ?>"><?php echo $lc["TenBanh"]; ?></a></div>
 			                                        </div>
 			                                        <ul class="item_marks">
 														<li class="item_mark item_new">-<?php echo $pt; ?>%</li>
@@ -175,7 +175,7 @@
 			                                        <div class="bbb_viewed_image"><img src="public/img/cakes/<?php echo $lc["Anh"]; ?>" alt=""></div>
 			                                        <div class="bbb_viewed_content text-center">
 			                                            <div class="bbb_viewed_price"><?php echo number_format($lc["GiaGiam"], 0, ",", "."); ?><sup> đ</sup></div>
-			                                            <div class="bbb_viewed_name"><a href="javascript:void(0)"><?php echo $lc["TenBanh"]; ?></a></div>
+			                                            <div class="bbb_viewed_name"><a href="./?p=cake&idCake=<?php echo $lc["idCake"]; ?>&name=<?php echo $lc["TenKD"]; ?>"><?php echo $lc["TenBanh"]; ?></a></div>
 			                                        </div>
 			                                        <ul class="item_marks">
 														<li class="item_mark item_new">-<?php echo $pt; ?>%</li>
@@ -232,7 +232,7 @@
 			                                        <div class="bbb_viewed_image"><img src="public/img/cakes/<?php echo $lc["Anh"]; ?>" alt=""></div>
 			                                        <div class="bbb_viewed_content text-center">
 			                                            <div class="bbb_viewed_price"><?php echo number_format($lc["GiaGiam"], 0, ",", "."); ?><sup> đ</sup></div>
-			                                            <div class="bbb_viewed_name"><a href="javascript:void(0)"><?php echo $lc["TenBanh"]; ?></a></div>
+			                                            <div class="bbb_viewed_name"><a href="./?p=cake&idCake=<?php echo $lc["idCake"]; ?>&name=<?php echo $lc["TenKD"]; ?>"><?php echo $lc["TenBanh"]; ?></a></div>
 			                                        </div>
 			                                        <ul class="item_marks">
 														<li class="item_mark item_new">-<?php echo $pt; ?>%</li>
@@ -278,14 +278,14 @@
 	                    <div class="contentProducts__card anime ">
 	                        <div class="contentProducts__image">
 	                            <div class="contentProducts__label">Mới!</div>
-	                            <a href="javascript:void()"><img src="public/img/cakes/<?php echo $new["Anh"]; ?>" alt="undefined"></a>
+	                            <a href="./?p=cake&idCake=<?php echo $new["idCake"]; ?>&name=<?php echo $new["TenKD"]; ?>"><img src="public/img/cakes/<?php echo $new["Anh"]; ?>" alt="undefined"></a>
 	                        </div>
 	                        <div class="contentProducts__text">
 	                                <h4 class="contentProducts__productTitle text-center"><?php echo $new["TenBanh"]; ?></h4>
 	                                <div class="contentProducts__priceContainer row">
 	                                    <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
-	                                        <a href="#">
-	                                        <div class="contentProducts__priceFinal"><?php echo number_format($new["GiaGiam"], 0, ",", "."); ?> đ</div>
+	                                        <a href="./?p=cake&idCake=<?php echo $new["idCake"]; ?>&name=<?php echo $new["TenBanh"]; ?>">
+	                                        	<div class="contentProducts__priceFinal"><?php echo number_format($new["GiaGiam"], 0, ",", "."); ?> đ</div>
 	                                        </a>
 	                                        <sub class="del"><?php echo number_format($new["GiaGoc"], 0, ",", "."); ?> đ</sub>
 	                                    </div>

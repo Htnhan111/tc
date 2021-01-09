@@ -37,9 +37,9 @@ $expensions= array("jpeg","jpg","png");
 
                     $sql = "
                         INSERT INTO 
-                        tb_cakes (idCake, TenBanh, TenKD, GiaGoc, GiaGiam, Anh, MoTa, DaBan, idLC, idTTC) 
+                        tb_cakes (idCake, TenBanh, TenKD, GiaGoc, GiaGiam, Anh, MoTa, DaBan, LuotThich, idLC, idTTC) 
                         VALUES 
-                        (NULL, :cake, :tenkd, :giagoc, :giagiam, :img, :mota, 0, :idloai, 1);
+                        (NULL, :cake, :tenkd, :giagoc, :giagiam, :img, :mota, 0, 0, :idloai, 1);
                     ";
                     $pre = $conn->prepare($sql);
                     $pre->bindParam(":cake", $cake, PDO::PARAM_STR);

@@ -92,14 +92,14 @@ button,a{
   z-index: 50;
   background: #fff;
   }
-  .user ul {
+/*   .user ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   width: 200% !important;
   background-color: rgba(61, 80, 88, 0.4);
   text-align: center;
-  }
+  } */
   .thim-click-to-bottom{
     display: none;
   }
@@ -406,6 +406,9 @@ form .form {
   height: 100%;
   text-align: center;
 }
+.ap form{
+  text-align: inherit;
+}
 .or{
   font-size: 14px;
 }
@@ -430,7 +433,7 @@ form .form {
 .ul_user li a {
   display: block;
   color: #fff;
-  padding: 25% 15% 25% 15%;
+  padding: 20% 10% 20% 10%;
   text-decoration: none;
 }
 .ul_user li a:hover {
@@ -705,7 +708,7 @@ div {
  }
 
  .item_mark {
-     display: none;
+     display: none;/*  ===chuyển cái ni sang block, cái còn lại none */
      width: 36px;
      height: 36px;
      border-radius: 50%;
@@ -718,16 +721,16 @@ div {
 
  .item_discount {
      background: #df3b3b;
-     margin-right: 5px
+     margin-right: 5px;
  }
 
  .item_new {
-     background: #0e8ce4
+     background: #0e8ce4;
  }
 
 
  .bbb_viewed_item.is_new .item_new, .bbb_viewed_item.discount .item_discount {
-     display: inline-block
+     display: inline-block;
  }
   /* end product */
 
@@ -1013,7 +1016,13 @@ ul {
   margin: 2px auto 5px;
 }
 .badge {
-  background: #b20c0c;
+  position: absolute;
+  background-color: red !important;
+  border-radius: 9px;
+  left: 28px;
+  color: #fff !important;
+  top: 46px;
+/*   background: #b20c0c;
   position: absolute;
   height: 40px;
   width: 40px;
@@ -1024,8 +1033,8 @@ ul {
   border: 2px solid #FFF;
   box-shadow: 0 0 0 1px #b20c0c;
   top: 5px;
-  right: 25%;
-}
+  right: 25%; */
+} 
 #slider-control img{
   padding-top: 60%;
   margin: 0 auto;
@@ -1223,6 +1232,28 @@ section:before {
   .contentProducts__title {
     font-size: 30px;
     line-height: 46px;
+  }
+}
+
+.contentProducts__cards {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+}
+
+@media screen and (max-width: 1023px) {
+  .contentProducts__cards {
+    -ms-grid-columns: (1fr)[3];
+        grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 799px) {
+  .contentProducts__cards {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -1826,6 +1857,9 @@ footer.page-footer a:hover{
     width: 10%;
   }
   @media screen and (max-width: 450px){
+    .kk{
+      padding: 0px 0px 0px 0px;
+    }
     .de{
       padding-left: 0px !important;
       margin-left: 0px !important;
@@ -1842,10 +1876,6 @@ footer.page-footer a:hover{
     }
     .product td{
       font-size: 10px;
-    }
-    .col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
-         padding-right: 0px !important; 
-         padding-left: 0px !important; 
     }
   }
   @media screen and (max-width: 1200px) {
@@ -2081,7 +2111,7 @@ footer.page-footer a:hover{
  
   }
 
-  .del{
+  .del,del{
     text-decoration: line-through;
   }
   .darius{
@@ -2091,7 +2121,111 @@ footer.page-footer a:hover{
 
 
 
+  /* new */
+  .sl{
+    color: #cc3300;
+    font-weight: 900;
+  }
+
+  .loc{
+    color: #000;
+    border: 1px solid #a3a375;
+  }
+  .divloc{
+    position: absolute;
+    z-index: 9;
+    width: 100%;
+    background-color: #cce6ff;
+  }
+  .divloc select{
+    font-size: 12px;
+  }
 
 
+/* của các đã đăng nhập rồi */
+.user_img{
+  border-radius: 20px;
+  text-align: center;
+}
+.user_img img{
+  height: auto;
+  border-radius: 50%;
+  width: 20%;
+}
+
+.clearfix p span{
+  display: flex;
+}
+.infor_us {
+    padding-left: 1%;
+    border: 1px solid  #b3b3b3;
+}
+.phon{
+  width: 100%;
+}
+.loc:focus,.phon:focus{
+  border: 1px solid #800000;
+}
+.xuat{
+  text-align: end;
+}
+.lgout{
+  width: 50%;
+  border-radius: 20px;
+  border: 1px solid #b3e6ff;
+  background-color: #1ab2ff;
+  color: #FFFFFF;
+  font-size: 20px;
+  font-weight: bold;
+  }
+.cmt{
+  background-color:#f0f5f5;
+  border-radius: 25px;
+}
+.cmt img{
+  width: 50px;
+  height: auto;
+  border-radius: 50%;
+}
+.cmtt img{
+  width: 40px;
+  height: auto;
+  border-radius: 50%;
+}
+.cmtt {
+  background-color: #f2f2f2 !important;
+}
+.bl_01{
+  display:inline-flex;
+  width: 90%;
+}
+.max-width{
+  width: 100%;
+  height: auto;
+}
+.font_cmt{
+  font-size: 14px;
+  font-weight: 500;"
+}
+.border_cmt{
+background-color: #fff;
+border-radius: 9px;
+}
+.over_flow{
+  height: 300px;
+  overflow: auto;
+}
+.cmt_col{
+  color: #808000;
+}
+.sendcmt{
+  width: 80%;
+  font-size: 17px;
+}
+.incmt{
+  border-radius: 5px;
+  border: none;
+  height: 35px;
+}
 
 

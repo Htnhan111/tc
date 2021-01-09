@@ -3,94 +3,90 @@
     require_once "../admin/dbcon/ConDB.php";
 
     if(isset($_POST["add-cart"])){
-        $idSP = $_POST["idSP"];
-        $idSize = (int)$_POST["size"];
-        $idMau = (int)$_POST["mau"];
+        $idCake = $_POST["idCake"];
         $soluong = $_POST["soluong"];
-
-        $size = "Không";
-        $price = 0;
+        $price = "";
         $ten = "";
         $anh = "";
-        $mau = "";
-        $tenkd= "";
-
+        $tenkd = "";
         $sql = "
-            SELECT * FROM tb_sanpham
-            INNER JOIN tb_loaisanpham
-            ON tb_sanpham.idLoaiSP = tb_loaisanpham.idLoaiSP
-            INNER JOIN tb_loai
-            ON tb_loaisanpham.idLoai = tb_loai.idLoai
-            INNER JOIN tb_thuonghieu
-            ON tb_sanpham.idTH = tb_thuonghieu.idTH
-            INNER JOIN tb_ttsanpham
-            ON tb_sanpham.idTTSP = tb_ttsanpham.idTTSP
-            WHERE idSP = :idSP
-            
+            SELECT * FROM tb_cakes
+            INNER JOIN tb_loaicake
+            ON tb_cakes.idLC = tb_loaicake.idLC
+            INNER JOIN tb_trangthaicake
+            ON tb_cakes.idTTC = tb_trangthaicake.idTTC
+            WHERE idCake = :idCake
         ";
         $pre = $conn->prepare($sql);
-        $pre->bindParam(":idSP", $idSP, PDO::PARAM_INT);
+        $pre->bindParam(":idCake", $idCake, PDO::PARAM_INT);
         $pre->execute();
         foreach($pre->fetchAll() as $row){
             $price = $row["GiaGiam"];
-            $ten = $row["Ten"];
+            $ten = $row["TenBanh"];
             $anh = $row["Anh"];
             $tenkd = $row["TenKD"];
         }
-
-        if($idSize > 0){
-            $sql = "
-                SELECT * FROM tb_sizesanpham
-                INNER JOIN tb_size
-                ON tb_sizesanpham.idSize = tb_size.idSize
-                WHERE tb_sizesanpham.idSizeSP = :idSizeSP
-            ";
-            $pre = $conn->prepare($sql);
-            $pre->bindParam(":idSizeSP", $idSize, PDO::PARAM_INT);
-            $pre->execute();
-            foreach($pre->fetchAll() as $row){
-                $size = $row["Size"];
-                $price = $row["Gia"];
-            }
-        }
-
-        $sql = "
-            SELECT * FROM tb_mausanpham
-            INNER JOIN tb_mau
-            ON tb_mausanpham.idMau = tb_mau.idMau
-            WHERE tb_mausanpham.idMauSP = :idMauSP
-        ";
-        $pre = $conn->prepare($sql);
-        $pre->bindParam(":idMauSP", $idMau, PDO::PARAM_INT);
-        $pre->execute();
-        foreach($pre->fetchAll() as $row){
-            $mau = $row["Mau"];
-        }
-
-        $kieu = $size." - ".$mau;
         $item = [
-            'id' => $idSP,
+            'id' => $idCake,
             'name' => $ten,
+            'namekd' => $tenkd,
             'img' => $anh,
             'price' => $price,
-            'kieu' => $kieu,
             'quantity' => $soluong
         ];
-        if(isset($_SESSION["cart"][$idSP])){
-            $_SESSION["cart"][$idSP]['quantity'] += $soluong;
+        if(isset($_SESSION["cart"][$idCake])){
+            $_SESSION["cart"][$idCake]['quantity'] += $soluong;
         }else{
-            $_SESSION["cart"][$idSP] = $item;
+            $_SESSION["cart"][$idCake] = $item;
         }
-        header("Location: ../?p=thong-tin&idSP=".$idSP."&name=".$tenkd);
-        
+        header("Location: ../?p=cake&idCake=".$idCake."&name=".$tenkd);
+    }
+    if(isset($_POST["buy-now"])){
+        $idCake = $_POST["idCake"];
+        $soluong = $_POST["soluong"];
+        $price = "";
+        $ten = "";
+        $anh = "";
+        $tenkd = "";
+        $sql = "
+            SELECT * FROM tb_cakes
+            INNER JOIN tb_loaicake
+            ON tb_cakes.idLC = tb_loaicake.idLC
+            INNER JOIN tb_trangthaicake
+            ON tb_cakes.idTTC = tb_trangthaicake.idTTC
+            WHERE idCake = :idCake
+        ";
+        $pre = $conn->prepare($sql);
+        $pre->bindParam(":idCake", $idCake, PDO::PARAM_INT);
+        $pre->execute();
+        foreach($pre->fetchAll() as $row){
+            $price = $row["GiaGiam"];
+            $ten = $row["TenBanh"];
+            $anh = $row["Anh"];
+            $tenkd = $row["TenKD"];
+        }
+        $item = [
+            'id' => $idCake,
+            'name' => $ten,
+            'namekd' => $tenkd,
+            'img' => $anh,
+            'price' => $price,
+            'quantity' => $soluong
+        ];
+        if(isset($_SESSION["cart"][$idCake])){
+            $_SESSION["cart"][$idCake]['quantity'] += $soluong;
+        }else{
+            $_SESSION["cart"][$idCake] = $item;
+        }
+        header("Location: ../?p=cart");
     }
     if(isset($_POST["delete"])){
-        unset($_SESSION["cart"][$_POST["idSP"]]);
-        header("Location: ../?p=gio-hang");
+        unset($_SESSION["cart"][$_POST["idCake"]]);
+        header("Location: ../?p=cart");
     }
     if(isset($_POST["update"])){
-        $_SESSION["cart"][$_POST["idSP"]]['quantity'] = $_POST["quantity"];
-        header("Location: ../?p=gio-hang");
+        $_SESSION["cart"][$_POST["idCake"]]['quantity'] = $_POST["quantity"];
+        header("Location: ../?p=cart");
     }
     if(isset($_POST["thanh-toan"])){
         $tenkh = $_POST["tenkh"];
@@ -116,7 +112,7 @@
                 $pre->execute();
             }
             $sql = "
-                INSERT INTO tb_donhang (idDH, TenKH, SDT, NoiNhan, GhiChu, TongTien, ThoiGian, idUser, idTTDH) 
+                INSERT INTO tb_order (idOrder, TenKH, SDT, NoiNhan, GhiChu, TongTien, ThoiGian, idUser, idOS) 
                 VALUES (NULL, :tenkh, :sdt, :dc, :ghichu, :tongtien, CURRENT_TIME(), :idUser, '1');
             ";
             $pre = $conn->prepare($sql);
@@ -134,26 +130,26 @@
             $count = 1;
             foreach($cart as $key){
                 $daban = 0;
-                $ctdh .= "('null', '".$key["id"]."', '".$key["kieu"]."', '".$key["price"]."', '".$key["quantity"]."', '".$key["quantity"]*$key["price"]."', '".$idDH."')";
+                $ctdh .= "('null', '".$key["id"]."', '".$key["price"]."', '".$key["quantity"]."', '".$idDH."')";
                 $sql = "
-                    SELECT * FROM tb_sanpham
-                    WHERE idSP = :idSP
+                    SELECT * FROM tb_cakes
+                    WHERE idCake = :idCake
                     
                 ";
                 $pre = $conn->prepare($sql);
-                $pre->bindParam(":idSP", $key["id"], PDO::PARAM_INT);
+                $pre->bindParam(":idCake", $key["id"], PDO::PARAM_INT);
                 $pre->execute();
                 foreach($pre->fetchAll() as $row){
                     $daban = $row["DaBan"];
                 }
                 $daban += $key["quantity"];
                 $sql = "
-                    UPDATE tb_sanpham
+                    UPDATE tb_cakes
                     SET DaBan = :sell
-                    WHERE idSP = :idSP;
+                    WHERE idCake = :idCake;
                 ";
                 $pre = $conn->prepare($sql);
-                $pre->bindParam(":idSP", $key["id"], PDO::PARAM_INT);
+                $pre->bindParam(":idCake", $key["id"], PDO::PARAM_INT);
                 $pre->bindParam(":sell", $daban, PDO::PARAM_INT);
                 $pre->execute();
                 // kiểm tra mảng để thêm dấu phẩy
@@ -163,7 +159,7 @@
                 }
             }
             
-            $sql = "INSERT INTO tb_chitietdonhang (idCTDH, idSP, Kieu, DonGia, SoLuong, ThanhTien, idDH) VALUES".$ctdh;
+            $sql = "INSERT INTO tb_orderdetail (idOD, idCake, DonGia, SoLuong, idOrder) VALUES".$ctdh;
             $pre = $conn->prepare($sql);
             $pre->execute();
             unset($_SESSION["cart"]);
