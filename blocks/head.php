@@ -55,7 +55,7 @@
 <div class="user">
     <ul class="ul_user">
   	  	<li class="active cart"id="button">
-  	  		<a href="#"data-toggle="collapse" data-target="#demo">
+  	  		<a href="javascript:void(0)"data-toggle="collapse" data-target="#demo">
   	  			<i class="fas fa-search"  aria-hidden="true"></i>
   	  		</a>
   	  		<ul>
@@ -63,9 +63,10 @@
 					<div id="demo" class="collapse">
 						<div class="box">
 							 <div class="container-4">
-							  	<form autocomplete="off" target="_self" action="/muongimuon.php">
+							  	<form autocomplete="off" target="_self" action="./" method="get">
 							  		<div class="autocomplete">
-									    <input onfocus="this.value=''" type="text" id="search" name="myCountry" placeholder="Search..." />
+									  	<input type="hidden" name="p" value="tim-kiem" placeholder="Search..." />
+									    <input type="text" id="search" name="q" placeholder="Search..." />
 									    <button class="icon" target="_self">
 									    	<i class="fa fa-search"></i>
 									    </button>
@@ -77,7 +78,7 @@
 				</li>
   	  		</ul>
   	  	</li>
-        <li><a href="javascript:void(0)"><i class="fas fa-shopping-cart"></i></a></li>
+        <li><a href="./?p=cart"><i class="fas fa-shopping-cart"></i></a></li>
         <li><a href="javascript:void(0)"><i class="fas fa-heart"></i></i></a></li>
         <li><a href="javascript:void(0)"  onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><i class="fas fa-user-circle"></i></a></li>
     </ul>

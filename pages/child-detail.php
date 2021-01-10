@@ -31,6 +31,7 @@
 					  	<thead>
 						    <tr class="_">
 						      	<th class="py-1 product-name text-dark" colspan="2"><h5 class="col pl-0"><?php echo $c["TenBanh"]; ?></h5></th>
+								<td class="py-1 product-name text-dark" colspan="2"><span id="like"><?php echo like_cake($idCake); ?></span> ❤</td>
 						    </tr>
 					  	</thead>
 					  	<tbody class="px-3">
@@ -73,7 +74,10 @@
 			      			<button type="submit" style="width:auto;" class="thanhtoan px-2 py-2" name="buy-now">MUA NGAY</button>
 			      		</div>
 			      		<div class="col-1 col-xl-1 col-md-1 col-sm-1 col-lg-1">
-			      			<i title="Thêm vào yêu thích" class=" faheart fa fa-heart" aria-hidden="true"></i>
+			      			<a href="javascript:void(0)" onclick="clickLike(this)" data-idc="<?php echo $idCake; ?>" 
+							data-idu="<?php $idUser = (isset($_SESSION["idUser"])) ? $_SESSION["idUser"] : 1;echo $idUser;  ?>">
+							  	<i title="Thêm vào yêu thích" class=" faheart fa fa-heart" aria-hidden="true"></i>
+							</a>
 			      		</div>
 			      	</div>
 				</div>
@@ -112,21 +116,35 @@
 
 <script>
 	function openC(evt, cName) {
-	var i, tabcontent, tablinks;
-	tabcontent = document.getElementsByClassName("tabcontent");
-	for (i = 0; i < tabcontent.length; i++) {
-		tabcontent[i].style.display = "none";
-	}
-	tablinks = document.getElementsByClassName("tablinks");
-	for (i = 0; i < tablinks.length; i++) {
-		tablinks[i].className = tablinks[i].className.replace(" active", "");
-	}
-	document.getElementById(cName).style.display = "block";
-	evt.currentTarget.className += " active";
+		var i, tabcontent, tablinks;
+		tabcontent = document.getElementsByClassName("tabcontent");
+		for (i = 0; i < tabcontent.length; i++) {
+			tabcontent[i].style.display = "none";
+		}
+		tablinks = document.getElementsByClassName("tablinks");
+		for (i = 0; i < tablinks.length; i++) {
+			tablinks[i].className = tablinks[i].className.replace(" active", "");
+		}
+		document.getElementById(cName).style.display = "block";
+		evt.currentTarget.className += " active";
 	}
 
 	// Get the element with id="defaultOpen" and click on it
 	document.getElementById("defaultOpen").click();
+
+	function clickLike(ele){
+		const idUser = ele.getAttribute("data-idu");
+		const idCake = ele.getAttribute("data-idc");
+		if(idUser == 1){
+			alert("Vui lòng đăng nhập để thích bánh này !!!");
+			document.getElementById(`id01`).style.display=`block`;
+		}else{
+			$.get("user_action/like_cake.php", {idUser:idUser, idCake:idCake}, function(data){
+				$("#like").html(data);
+			});
+		}
+		
+	}
 </script>
 <?php
 	endforeach;

@@ -163,6 +163,7 @@
             $pre = $conn->prepare($sql);
             $pre->execute();
             unset($_SESSION["cart"]);
+            $_SESSION["tb"] = 1;
             header("Location: ../");
         }else{
             echo "<script> alert('Vui lòng nhập những thông tin bắt buộc !!!'); </script>";

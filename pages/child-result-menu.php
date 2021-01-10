@@ -161,20 +161,23 @@
                     if($p === '<'){
                         if(isset($_GET["sort"])){
                             echo "./?p=menu&idLC=".$idLC."&loai=".$_GET["loai"]."&sort=".$_GET["sort"]."&trang=".($currentPage-1);
+                        }else{
+                            echo "./?p=menu&idLC=".$idLC."&loai=".$_GET["loai"]."&trang=".($currentPage-1);
                         }
-                        echo "./?p=menu&idLC=".$idLC."&loai=".$_GET["loai"]."&trang=".($currentPage-1);
                     }
                     else if($p === '>'){
                         if(isset($_GET["sort"])){
                             echo "./?p=menu&idLC=".$idLC."&loai=".$_GET["loai"]."&sort=".$_GET["sort"]."&trang=".($currentPage+1);
+                        }else{
+                            echo "./?p=menu&idLC=".$idLC."&loai=".$_GET["loai"]."&trang=".($currentPage+1);
                         }
-                        echo "./?p=menu&idLC=".$idLC."&loai=".$_GET["loai"]."&trang=".($currentPage+1);
                     }
                     else{
                         if(isset($_GET["sort"])){
                             echo "./?p=menu&idLC=".$idLC."&loai=".$_GET["loai"]."&sort=".$_GET["sort"]."&trang=".$p;
+                        }else{
+                            echo "./?p=menu&idLC=".$idLC."&loai=".$_GET["loai"]."&trang=".$p;
                         }
-                        echo "./?p=menu&idLC=".$idLC."&loai=".$_GET["loai"]."&trang=".$p;
                     }
                 ?>" style="margin:0 5px;text-decoration: none;<?php if($p == $currentPage){echo "color:red;";} ?>">
                     <?php echo $p; ?>

@@ -43,7 +43,13 @@
 			        require "pages/child-result-menu.php"; break;
 			    }else{
 			        require "pages/dashboard.php"; break;
-			    }
+				}
+			case "tim-kiem" : 
+				if( isset($_GET["q"]) ){
+					require "pages/child-result-find.php"; break;
+				}else{
+					require "pages/dashboard.php"; break;
+				}
 			default : require "pages/child-index.php";
 		}
 	?>
@@ -66,6 +72,23 @@
 	<?php
 		endif;
     ?>
+	<?php
+		if($_SESSION["tb"] === 1):		
+	?>
+		<div id="thanks" class="modal pt-5" style="display:block;">
+			<div class="modal-content animate">
+				<h3>Thông báo</h3>
+				<h4>
+					Cám ơn bạn đã đặt mua sản phẩm của cửa hàng chúng tôi. <br>
+					Nhân viên của cửa hàng sẽ gọi điện đến để xác nhận đơn hàng.
+				</h4>
+				<a href="javascript:void(0)" onclick="document.getElementById('thanks').style.display='none'">Đóng</a>
+			</div>
+		</div>
+	<?php
+		$_SESSION["tb"]++;
+		endif;
+	?>
 </body>
 </html>
 

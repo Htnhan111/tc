@@ -95,14 +95,14 @@
 				    <tr>
 						<td class="px-5 bottum" colspan="2">
 							<ul style="display: flex;">
-								<li class="font-weight-bold"><input type="text" placeholder="Mã giảm giá" name="sale"> </li>
-								<li style="font-size: 13px; text-align: center;" class="lgout margin-left-auto"> <a href="javascript:void(0)">Áp dụng</a></li>
+								<li class="font-weight-bold"><input type="text" placeholder="Mã giảm giá" id="mgg"> </li>
+								<li style="font-size: 13px; text-align: center;" class="lgout margin-left-auto"> <a href="javascript:void(0)" onclick="checkMGG()">Áp dụng</a></li>
 							</ul>
 						</td>
 				    </tr>
 					<tr>
 						<td class="px-5 bottum" colspan="2">
-							<h4>TỔNG CỘNG: <span><?php echo number_format($total, 0, ",", "."); ?></span> đ</h4>
+							<h4>TỔNG CỘNG: <span id="thanhtoan"><?php echo number_format($total, 0, ",", "."); ?> đ</span> </h4>
 						</td>
 				    </tr>
 				    <tr>
@@ -113,7 +113,7 @@
 			  	</tbody>
 			</table>
 			<div id="id03" class="modal pt-5">
-				<form class="modal-content animate" action="user_action/cart_action.php" method="post">
+				<form class="modal-content animate" action="user_action/cart_action.php" method="post" onsubmit="return checkTT()">
 					<div class="imgcontainer">
 						<span onclick="document.getElementById('id03').style.display='none'" class="closse" title="Close Modal">&times;</span>
 						<h2 class="font-weight-bold">XÁC NHẬN ĐƠN HÀNG</h2>
@@ -126,18 +126,18 @@
 								<div class="addres"><h4>1. Xác nhận thông tin đơn hàng</h4></div>
 								<div class="addres bor">
 									<i class="mar fas fa-map-marker-alt "></i>
-									<input id="searchLoction" placeholder="Nhập địa chỉ giao hàng" name="dc" title="Nhập địa chỉ giao hàng" type="text" autocomplete="off" class="uk-input">
+									<input id="searchLoction" placeholder="Nhập địa chỉ giao hàng" name="dc" title="Nhập địa chỉ giao hàng" type="text" class="uk-input">
 								</div>
 								<div class="addres bor">
 									<i class="mar fas fa-user-circle"></i>
-									<input type="text" placeholder="Người nhận" title="Người nhận"  name="tenkh" required>
+									<input type="text" placeholder="Người nhận" title="Người nhận"  name="tenkh" id="tenkh" required>
 								</div>
 								<div class="addres bor">
 									<i class=" mar fas fa-phone"></i>
 									<input type="tel" id="phone" name="sdt" placeholder="Số điện thoại" title="Số điện thoại" required>
 								</div>
 								<div class="addres bor">
-									<input type="text" placeholder="Ghi chú" title="Lưu ý của bạn" name="ghichu" >
+									<input type="text" placeholder="Ghi chú" title="Lưu ý của bạn" name="ghichu" id="ghichu">
 								</div>
 							</div>
 							<div class="col-xl-6 col-md-6 col-lg-6 col-sm-6 col-6  mrs">
@@ -157,14 +157,18 @@
 								</div>
 								<hr>
 								<div class="text-center">
-									<h3>Tổng: <small class="font-italic"><?php echo number_format($total, 0, ",", "."); ?> đ</small></h3>
+									<h3>Tổng: <small class="font-italic" id="tttt"><?php echo number_format($total, 0, ",", "."); ?> đ</small></h3>
 									<hr>
 									<div class="dk pb-4">
-										<small>Bằng việc chọn "Đặt hàng", bạn đã đồng ý với <a style="text-decoration:underline;" href="#">Điều khoản sử dụng</a>, và <a href="#" style="text-decoration:underline;"> chính sách bảo mật thông tin</a> của Tasty Cakes.</small>
+										<small>
+											Bằng việc chọn "Đặt hàng", bạn đã đồng ý với 
+											<a style="text-decoration:underline;" href="javascript:void(0)">Điều khoản sử dụng</a>, 
+											và <a href="javascript:void(0)" style="text-decoration:underline;"> chính sách bảo mật thông tin</a> của Tasty Cakes.
+										</small>
 									</div>
 									<div class="px-5 pt-3 text-center nopadding">
-										<input type="hidden" name="tongtien" value="<?php echo $total; ?>">
-										<button class="thanhtoan px-3 py-3" name="thanh-toan">ĐẶT HÀNG</button>
+										<input type="hidden" name="tongtien" id="tongtien" value="<?php echo $total; ?>">
+										<button class="thanhtoan px-3 py-3" name="thanh-toan" type="submit">ĐẶT HÀNG</button>
 									</div>
 								</div>
 							</div>
@@ -175,3 +179,40 @@
 		</div>
 	</div>
 </div>
+<script>
+	function checkTT(){
+		const vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
+		const dc = document.getElementById("searchLoction").value;
+		const tenkh = document.getElementById("tenkh").value;
+		const sdt = document.getElementById("phone").value;
+		if(dc === "" || tenkh === "" || std === ""){
+			alert("Vui lòng nhập đầy đủ thông tin cần thiết !!!");
+			return false;
+		} else if(reg.test(sdt) !== true){
+			alert("Vui lòng nhập đúng định dạng số điện thoại !!!");
+			return false;
+		}else{
+			//;
+			return true;
+		}
+	}
+	var check = 1;
+	function checkMGG(){
+		const mgg = document.getElementById("mgg").value;
+		const tien = document.getElementById("tongtien").value;
+		
+		if(check === 1){
+			$.get("user_action/magiamgia.php", {mgg:mgg, tien:tien, check:check}, function(data){
+				$("#tttt").html(data);
+				$("#thanhtoan").html(data);
+				$("#ghichu").attr("value",data);
+			});
+			$.get("user_action/giamgia.php", {mgg:mgg, tien:tien, check:check}, function(data){
+				$("#tongtien").attr("value",data);
+			});
+			check = 2;
+		}else{
+			alert("Bạn đã sử dụng mã giảm giá !!!");
+		}
+	}
+</script>
