@@ -86,7 +86,7 @@
                         <h4>Thêm loại</h4>
                         <label for="type">Loại: </label>
                         <input type="text" name="loai" class="form-control form-control-sm in"><br>
-                        <input type="hidden" name="idUser" id="iduser" value="<?php echo $idOrder; ?>">
+                        <input type="hidden" name="idUser" id="iduser" value="<?php //echo //$idOrder; ?>">
                         <button type="submit" name="add-loai" class="btn-sub">Thêm</button>
                     </div>
                 </form>
