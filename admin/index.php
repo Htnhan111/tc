@@ -1,13 +1,13 @@
 <?php
     session_start();
     require_once "dbcon/function.php";
-    // if((int)$_SESSION["loai"] === 2){
-    //     echo "<script> alert('Bạn không đủ quyền hạn !!!'); </script>";
-    //     header("Location: ../");
-    // }else if(!isset($_SESSION["idUser"])){
-    //     echo "<script> alert('Vui lòng đăng nhập !!!'); </script>";
-    //     echo "<script> window.history.back(); </script>";
-    // }
+    if(!isset($_SESSION["idUser"])){
+        echo "<script> alert('Vui lòng đăng nhập !!!'); </script>";
+        echo "<script> window.history.back(); </script>";
+    }else if((int)$_SESSION["loai"] === 2){
+        echo "<script> alert('Bạn không đủ quyền hạn !!!'); </script>";
+        header("Location: ../");
+    }
     if( isset($_GET["p"]) ){
         $p = $_GET["p"];
     }else $p = "";

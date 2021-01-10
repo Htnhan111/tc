@@ -68,3 +68,9 @@ function changeStt(ele){
         $("#changestt").html(data);
     });
 }
+
+function changeType(ele){
+    const id = ele.getAttribute("data-id"); 
+    document.getElementById('type').style.display='block';
+    document.getElementById('iduser').value = id;
+}

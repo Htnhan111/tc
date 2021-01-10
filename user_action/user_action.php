@@ -135,7 +135,7 @@
                 $pre->bindParam(":idUser", $idUser, PDO::PARAM_INT);
                 $pre->bindParam(":img", $img, PDO::PARAM_STR);
                 $pre->execute();
-                header("location:../?p=nguoi-dung");
+                header("location:../?p=profile");
             }else{
                 echo "<script> window.history.back(); </script>";
                 echo "<script> alert('Chỉ nhận file ảnh !!!'); </script>";
@@ -147,26 +147,24 @@
     }
     if(isset($_POST["update"])){
         $idUser = $_POST["idUser"];
-        $email = $_POST["email"];
         $hvt = $_POST["hvt"];
-        $sdt = $_POST["phone"];
-        $dc = $_POST["address"];
+        $sdt = $_POST["sdt"];
+        $dc = $_POST["dc"];
         $sql = "
             UPDATE tb_user 
-            SET Email = :email,
-                HoTen = :hvt,
+            SET HoTen = :hvt,
                 SDT = :sdt,
                 DiaChi = :dc
             WHERE idUser = :idUser
         ";
         $pre = $conn->prepare($sql);
         $pre->bindParam(":idUser", $idUser, PDO::PARAM_INT);
-        $pre->bindParam(":email", $email, PDO::PARAM_STR);
         $pre->bindParam(":hvt", $hvt, PDO::PARAM_STR);
         $pre->bindParam(":dc", $dc, PDO::PARAM_STR);
         $pre->bindParam(":sdt", $sdt, PDO::PARAM_STR);
         $pre->execute();
-        header("location:../?p=nguoi-dung");
+        header("location:../?p=profile");
+        
     }
     if(isset($_POST["changePass"])){
         if($_POST["oldpass"] !==  "" && $_POST["newpass"] !==  "" && $_POST["rnewpass"] !==  ""){
@@ -195,7 +193,7 @@
                         $pre->bindParam(":idUser", $idUser, PDO::PARAM_INT);
                         $pre->bindParam(":hpw", $hpw, PDO::PARAM_STR);
                         $pre->execute();
-                        header("location:../?p=nguoi-dung");
+                        header("location:../?p=profile");
                     }else {
                         echo '<script>alert("Sai mật khẩu !!!");</script>';
                         echo '<script> window.history.back();</script>';

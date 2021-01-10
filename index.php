@@ -4,7 +4,6 @@
     if( isset($_GET["p"]) ){
         $p = $_GET["p"];
 	}else $p = "";
-	// unset($_SESSION['stk']);
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +33,7 @@
 				if( isset($_GET["idCake"]) && isset($_GET["name"])){
 					require "pages/child-detail.php"; break;
 				}else{
-					require "pages/dashboard.php"; break;
+					require "pages/child-index.php"; break;
 				}
 
 			case "cart" : require "pages/child-cart.php"; break;
@@ -42,14 +41,21 @@
 			    if( isset($_GET["idLC"]) && isset($_GET["loai"]) ){
 			        require "pages/child-result-menu.php"; break;
 			    }else{
-			        require "pages/dashboard.php"; break;
+			        require "pages/child-index.php"; break;
 				}
-			case "tim-kiem" : 
+			case "find" : 
 				if( isset($_GET["q"]) ){
 					require "pages/child-result-find.php"; break;
 				}else{
-					require "pages/dashboard.php"; break;
+					require "pages/child-index.php"; break;
 				}
+			case "profile" : 
+				if( isset($_SESSION["idUser"]) ){
+					require "pages/child-profile.php"; break;
+				}else{
+					require "pages/child-index.php"; break;
+				}
+
 			default : require "pages/child-index.php";
 		}
 	?>
@@ -73,7 +79,8 @@
 		endif;
     ?>
 	<?php
-		if($_SESSION["tb"] === 1):		
+		if(isset($_SESSION["tb"])):
+			if($_SESSION["tb"] === 1):		
 	?>
 		<div id="thanks" class="modal pt-5" style="display:block;">
 			<div class="modal-content animate">
@@ -86,7 +93,8 @@
 			</div>
 		</div>
 	<?php
-		$_SESSION["tb"]++;
+			$_SESSION["tb"]++;
+			endif;
 		endif;
 	?>
 </body>

@@ -1,8 +1,4 @@
 
-
-
-
-
 // AutoFch
 function autocomplete(inp, arr) {
   /*the autocomplete function takes two arguments,
@@ -137,6 +133,7 @@ function scrollFunction() {
   }
 }
 
+//Tốc độ cuộn về top
 // When the user clicks on the button, scroll to the top of the document
 function topFunction() {
 $("body,html").animate({scrollTop: 0}, "slow");
@@ -144,69 +141,18 @@ $("body,html").animate({scrollTop: 0}, "slow");
  document.documentElement.scrollTop = 0;
 }
 
-// Get the modal
-var modal = document.getElementById('id01');
+// // Get the modal
+// var modal = document.getElementById('id01');
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
+// // When the user clicks anywhere outside of the modal, close it
+// window.onclick = function(event) {
+//     if (event.target == modal) {
+//         modal.style.display = "none";
+//     }
+// }
 
-// Automatic Slideshow - change image every 4 seconds
-var myIndex = 0;
-// carousel();
-// Used to toggle the menu on small screens when clicking on the menu button
-function myFunction() {
-  var x = document.getElementById("navDemo");
-  if (x.className.indexOf("w3-show") == -1) {
-    x.className += " w3-show";
-  } else { 
-    x.className = x.className.replace(" w3-show", "");
-  }
-}
 
-// When the user clicks anywhere outside of the modal, close it
-var modal = document.getElementById('ticketModal');
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-    $('#myCarousel').carousel({interval:5000});
-    
 // <!-- button search -->
-
-function toggle_visibility(id) { 
- var e = document.getElementById(id); 
- if(e.style.display == 'block') 
-  e.style.display = 'none'; 
- else 
-  e.style.display = 'block'; 
-} 
-
-$('#carouselExample').on('slide.bs.carousel', function (e) {
-
-  
-    var $e = $(e.relatedTarget);
-    var idx = $e.index();
-    var itemsPerSlide = 3;
-    var totalItems = $('.carousel-item').length;
-    
-    if (idx >= totalItems-(itemsPerSlide-1)) {
-        var it = itemsPerSlide - (totalItems - idx);
-        for (var i=0; i<it; i++) {
-            // append slides to end
-            if (e.direction=="left") {
-                $('.carousel-item').eq(i).appendTo('.carousel-inner');
-            }
-            else {
-                $('.carousel-item').eq(0).appendTo('.carousel-inner');
-            }
-        }
-    }
-});
 // slide product
 //1
 $(document).ready(function()

@@ -109,6 +109,20 @@
             $pre->execute();
             return $pre->fetchAll();
         }
+        // Lấy đơn hàng của 1 người
+        function order_user($idUser){
+            require "ConDB.php";
+            $sql = "
+                SELECT * FROM tb_order
+                INNER JOIN tb_orderstatus
+                ON tb_order.idOS = tb_orderstatus.idOS
+                WHERE tb_order.idUser = :idUser
+            ";
+            $pre = $conn->prepare($sql);
+            $pre->bindParam(":idUser", $idUser, PDO::PARAM_INT);
+            $pre->execute();
+            return $pre->fetchAll();
+        }
     #
 
     # Tìm kiếm menu phân trang
@@ -212,6 +226,21 @@
                 ON tb_user.idLU = tb_loaiuser.idLU
             ";
             $pre = $conn->prepare($sql);
+            $pre->execute();
+            return $pre->fetchAll();
+        }
+
+        // thông tin của người dùng
+        function user_info($idUser){
+            require "ConDB.php";
+            $sql = "
+                SELECT * FROM tb_user
+                INNER JOIN tb_loaiuser
+                ON tb_user.idLU = tb_loaiuser.idLU
+                WHERE idUser = :idUser
+            ";
+            $pre = $conn->prepare($sql);
+            $pre->bindParam(":idUser", $idUser, PDO::PARAM_INT);
             $pre->execute();
             return $pre->fetchAll();
         }
@@ -342,6 +371,19 @@
             require "ConDB.php";
             $sql = "
                 SELECT * FROM tb_magiamgia
+            ";
+            $pre = $conn->prepare($sql);
+            $pre->execute();
+            return $pre->fetchAll();
+        }
+    #
+
+    # Mã giảm giá func
+        // Lấy tất cả loại người dùng
+        function all_loaiuser(){
+            require "ConDB.php";
+            $sql = "
+                SELECT * FROM tb_loaiuser
             ";
             $pre = $conn->prepare($sql);
             $pre->execute();

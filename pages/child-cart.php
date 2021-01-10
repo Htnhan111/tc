@@ -126,15 +126,15 @@
 								<div class="addres"><h4>1. Xác nhận thông tin đơn hàng</h4></div>
 								<div class="addres bor">
 									<i class="mar fas fa-map-marker-alt "></i>
-									<input id="searchLoction" placeholder="Nhập địa chỉ giao hàng" name="dc" title="Nhập địa chỉ giao hàng" type="text" class="uk-input">
+									<input id="searchLoction" placeholder="Nhập địa chỉ giao hàng" name="dc" title="Nhập địa chỉ giao hàng" value="<?php if(isset($_SESSION["idUser"])){echo $_SESSION["DiaChi"];}else{echo "";} ?>" type="text" class="uk-input">
 								</div>
 								<div class="addres bor">
 									<i class="mar fas fa-user-circle"></i>
-									<input type="text" placeholder="Người nhận" title="Người nhận"  name="tenkh" id="tenkh" required>
+									<input type="text" placeholder="Người nhận" title="Người nhận"  name="tenkh" id="tenkh" value="<?php if(isset($_SESSION["idUser"])){echo $_SESSION["HoTen"];}else{echo "";} ?>" required>
 								</div>
 								<div class="addres bor">
 									<i class=" mar fas fa-phone"></i>
-									<input type="tel" id="phone" name="sdt" placeholder="Số điện thoại" title="Số điện thoại" required>
+									<input type="tel" id="phone" name="sdt" placeholder="Số điện thoại" title="Số điện thoại" value="<?php if(isset($_SESSION["idUser"])){echo $_SESSION["SDT"];}else{echo "";} ?>" required>
 								</div>
 								<div class="addres bor">
 									<input type="text" placeholder="Ghi chú" title="Lưu ý của bạn" name="ghichu" id="ghichu">
